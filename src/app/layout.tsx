@@ -23,7 +23,13 @@ export default function RootLayout({
         <title>Mike van Peeren</title>
       </head>
       <body className="bg-grey-light dark:bg-grey-vdark">
-        <Providers>{children}</Providers>
+        <Providers>
+          <header className="h-[60px] bg-green-300">hello</header>
+          <div className="page-height flex">
+            <aside className="relative -top-[1px] left-0 w-[200px] bg-red-200"></aside>
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );

@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --header-height: 60px;
+}
+
 @layer base {
   * {
     @apply text-md;
@@ -36,12 +40,16 @@
 // }
 // }
 
-// @layer components {
-//   .checkbox-label {
-//     @apply border-form-gray-light hover:ring-form-purple ring-form-gray-light flex cursor-pointer items-center gap-3 rounded-md border p-4 ring-1 hover:bg-gray-50;
-//   }
+@layer components {
+  .page-height {
+    height: calc(100% - var(--header-height));
+  }
 
-//   .checkbox-label:has(input:checked) {
-//     @apply bg-form-gray-lightest ring-form-purple ring-2;
-//   }
-// }
+  .checkbox-label {
+    @apply border-form-gray-light hover:ring-form-purple ring-form-gray-light flex cursor-pointer items-center gap-3 rounded-md border p-4 ring-1 hover:bg-gray-50;
+  }
+
+  .checkbox-label:has(input:checked) {
+    @apply bg-form-gray-lightest ring-form-purple ring-2;
+  }
+}
