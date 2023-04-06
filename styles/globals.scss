@@ -5,7 +5,7 @@
 
 @layer base {
   * {
-    @apply font-form text-base;
+    @apply text-md;
   }
 
   html,
@@ -13,16 +13,12 @@
     @apply h-full;
   }
 
-  body {
-    @apply bg-primary-light-gray;
-  }
-
   h1 {
-    @apply text-head-xl text-primary-black;
+    @apply text-xl text-black;
   }
 
   h2 {
-    @apply text-head-lg text-primary-black;
+    @apply text-lg text-black;
   }
 }
 

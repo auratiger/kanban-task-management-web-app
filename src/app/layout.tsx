@@ -2,6 +2,8 @@ import React from "react";
 
 import { Plus_Jakarta_Sans } from "@next/font/google";
 
+import { Providers } from "./providers";
+
 import "../../styles/globals.scss";
 
 // If loading a variable font, you don't need to specify the font weight
@@ -16,17 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jakarta.variable}`}>
+    <html lang="en" className={`${jakarta.variable}`} suppressHydrationWarning>
       <head>
         <title>Mike van Peeren</title>
       </head>
-      <body className="bg-black">
-        <div className="mx-auto max-w-screen-lg px-6 py-12">
-          <div className="col-start-2">
-            {/* Here you can place your Navigation */}
-          </div>
-          <div>{children}</div>
-        </div>
+      <body className="bg-grey-light dark:bg-grey-vdark">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
