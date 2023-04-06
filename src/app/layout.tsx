@@ -1,11 +1,14 @@
 import React from "react";
 
-import { Inter } from "@next/font/google";
+import { Plus_Jakarta_Sans } from "@next/font/google";
 
 import "../../styles/globals.scss";
 
 // If loading a variable font, you don't need to specify the font weight
-const inter = Inter();
+const jakarta = Plus_Jakarta_Sans({
+  display: "swap",
+  variable: "--font-jakarta",
+});
 
 export default function RootLayout({
   children,
@@ -13,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={`${jakarta.variable}`}>
       <head>
         <title>Mike van Peeren</title>
       </head>

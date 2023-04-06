@@ -2,3 +2,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    @apply font-form text-base;
+  }
+
+  html,
+  body {
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-primary-light-gray;
+  }
+
+  h1 {
+    @apply text-head-xl text-primary-black;
+  }
+
+  h2 {
+    @apply text-head-lg text-primary-black;
+  }
+}
+
+// .body {
+// &_large {
+//   @apply text-form-gray-normal text-base;
+// }
+
+// &_medium {
+//   @apply text-sm;
+// }
+
+// &_small {
+//   @apply text-xs;
+// }
+// }
+
+// @layer components {
+//   .checkbox-label {
+//     @apply border-form-gray-light hover:ring-form-purple ring-form-gray-light flex cursor-pointer items-center gap-3 rounded-md border p-4 ring-1 hover:bg-gray-50;
+//   }
+
+//   .checkbox-label:has(input:checked) {
+//     @apply bg-form-gray-lightest ring-form-purple ring-2;
+//   }
+// }
