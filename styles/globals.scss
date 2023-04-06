@@ -5,11 +5,12 @@
 
 :root {
   --header-height: 60px;
+  --sidebar-width: 250px;
 }
 
 @layer base {
   * {
-    @apply text-md;
+    @apply text-sm;
   }
 
   html,
@@ -26,30 +27,41 @@
   }
 }
 
-// .body {
-// &_large {
-//   @apply text-form-gray-normal text-base;
-// }
+.body {
+  &_large {
+    @apply text-lg;
+  }
 
-// &_medium {
-//   @apply text-sm;
-// }
+  &_medium {
+    @apply text-md;
+  }
 
-// &_small {
-//   @apply text-xs;
-// }
-// }
+  &_small {
+    @apply text-sm;
+  }
+}
 
 @layer components {
   .page-height {
     height: calc(100% - var(--header-height));
   }
 
-  .checkbox-label {
-    @apply border-form-gray-light hover:ring-form-purple ring-form-gray-light flex cursor-pointer items-center gap-3 rounded-md border p-4 ring-1 hover:bg-gray-50;
+  .sidebar {
+    width: var(--sidebar-width);
+    @apply relative left-0 border-r-2 border-r-lines-light bg-green-300;
   }
 
-  .checkbox-label:has(input:checked) {
-    @apply bg-form-gray-lightest ring-form-purple ring-2;
+  .logo-box {
+    width: var(--sidebar-width);
+    @apply flex h-full items-center justify-start border-r-2 border-r-lines-light;
+  }
+
+  .header {
+    height: var(--header-height);
+    @apply flex items-center bg-green-300;
+  }
+
+  .btn {
+    @apply rounded-full bg-purple px-4 py-1 text-sm text-white;
   }
 }

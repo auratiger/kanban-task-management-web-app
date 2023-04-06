@@ -4,7 +4,7 @@ const colors = {
   white: "hsl(206, 94%, 87%)", // #FFFFFF
   purple: {
     light: "hsl(243, 100%, 82%)", // #A8A4FF
-    DEFAULT: "hsl(99, 95%, 199%)", // #635FC7
+    DEFAULT: "hsl(242, 48%, 58%)", // #635FC7
     medium: "#635fc740",
     low: "#635fc71a",
   },

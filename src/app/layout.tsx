@@ -2,6 +2,8 @@ import React from "react";
 
 import { Plus_Jakarta_Sans } from "@next/font/google";
 
+import Header from "@/components/Header";
+
 import { Providers } from "./providers";
 
 import "../../styles/globals.scss";
@@ -24,9 +26,9 @@ export default function RootLayout({
       </head>
       <body className="bg-grey-light dark:bg-grey-vdark">
         <Providers>
-          <header className="h-[60px] bg-green-300">hello</header>
+          <Header />
           <div className="page-height flex">
-            <aside className="relative -top-[1px] left-0 w-[200px] bg-red-200"></aside>
+            <aside className="sidebar"></aside>
             {children}
           </div>
         </Providers>
