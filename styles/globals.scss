@@ -52,7 +52,13 @@
 
   .sidebar {
     width: var(--sidebar-width);
-    @apply relative left-0 isolate flex flex-col border-r-2 border-r-lines-light bg-white text-grey-medium;
+    transition: width, padding;
+    @apply flex flex-col border-r-2 border-r-lines-light bg-white
+    p-8 text-grey-medium duration-1000;
+  }
+
+  .sidebar:has(button[show-sidebar="false"]) {
+    @apply w-0 px-0;
   }
 
   .sidebar-dark {
@@ -109,7 +115,7 @@
     --toggle-ball: 3px;
 
     @apply after:absolute after:left-[var(--toggle-ball)] after:top-[50%] after:aspect-square after:h-[75%] after:-translate-y-1/2 after:rounded-full 
-      after:border after:border-gray-300 after:bg-white after:transition-all after:content-['']
+      after:border after:border-gray-300 after:bg-white after:transition-[left] after:content-['']
       peer-checked:after:left-[calc(100%_-_var(--toggle-ball))] peer-checked:after:-translate-x-full peer-checked:after:border-white 
       peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300;
   }

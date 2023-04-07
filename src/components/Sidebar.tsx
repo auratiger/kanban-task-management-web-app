@@ -2,6 +2,7 @@ import React from "react";
 
 import BoardIcon from "./icons/BoardIcon";
 import ThemeToggle from "./ThemeToggle";
+import ToggleSidebarButton from "./ToggleSidebarButton";
 
 const boards = [
   {
@@ -22,7 +23,7 @@ const Sidebar = () => {
   const count: number = boards.length;
 
   return (
-    <aside className="sidebar sidebar-dark place-content-start gap-4 overflow-hidden p-8">
+    <aside className="sidebar sidebar-dark place-content-start gap-4 overflow-hidden whitespace-nowrap">
       <span className="uppercase">{`All boards (${count})`}</span>
       <div className="mb-auto grid gap-2">
         {boards.map((board, index) => {
@@ -34,6 +35,7 @@ const Sidebar = () => {
       </div>
 
       <ThemeToggle />
+      <ToggleSidebarButton />
     </aside>
   );
 };
