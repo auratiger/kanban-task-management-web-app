@@ -52,7 +52,11 @@
 
   .sidebar {
     width: var(--sidebar-width);
-    @apply relative left-0 border-r-2 border-r-lines-light bg-green-300;
+    @apply relative left-0 isolate grid border-r-2 border-r-lines-light bg-white text-grey-medium;
+  }
+
+  .sidebar-dark {
+    @apply dark:bg-grey-dark;
   }
 
   .logo-box {
@@ -63,6 +67,10 @@
   .header {
     height: var(--header-height);
     @apply flex items-center bg-white;
+  }
+
+  .header-dark {
+    @apply dark:bg-grey-dark;
   }
 
   .btn {

@@ -3,6 +3,7 @@ import React from "react";
 import { Plus_Jakarta_Sans } from "@next/font/google";
 
 import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 
 import { Providers } from "./providers";
 
@@ -28,7 +29,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <div className="page-height flex">
-            <aside className="sidebar"></aside>
+            <Sidebar />
             {children}
           </div>
         </Providers>
