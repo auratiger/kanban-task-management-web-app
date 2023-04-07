@@ -1,7 +1,7 @@
 const colors = {
   transparent: "transparent",
   current: "currentColor",
-  white: "hsl(206, 94%, 87%)", // #FFFFFF
+  white: "hsl(0, 0%, 100%)", // #FFFFFF
   purple: {
     light: "hsl(243, 100%, 82%)", // #A8A4FF
     DEFAULT: "hsl(242, 48%, 58%)", // #635FC7
@@ -41,12 +41,55 @@ module.exports = {
       "2xl": "1440px",
     },
     fontSize: {
-      ms: "1.3rem",
-      sm: "1.2rem",
-      md: "1.5rem",
-      lg: "1.8rem",
+      ms: "0.66rem",
+      sm: "0.88rem",
+      md: "1.6rem",
+      lg: "1.3rem",
       lx: "2rem",
       xl: "2.4rem",
+
+      "body-md": [
+        "0.8125rem",
+        {
+          lineHeight: "23px",
+          fontWeight: "700",
+        },
+      ],
+      "body-lg": [
+        "0.75rem",
+        {
+          lineHeight: "15px",
+          fontWeight: "700",
+        },
+      ],
+      "head-sm": [
+        "0.75rem",
+        {
+          lineHeight: "15px",
+          fontWeight: "700",
+        },
+      ],
+      "head-md": [
+        "0.9375rem",
+        {
+          lineHeight: "19px",
+          fontWeight: "700",
+        },
+      ],
+      "head-lg": [
+        "1.125rem",
+        {
+          lineHeight: "23px",
+          fontWeight: "700",
+        },
+      ],
+      "head-xl": [
+        "1.5rem",
+        {
+          lineHeight: "30px",
+          fontWeight: "700",
+        },
+      ],
     },
     lineHeight: {
       ms: "2.3rem",

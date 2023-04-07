@@ -10,7 +10,7 @@
 
 @layer base {
   * {
-    @apply text-sm;
+    @apply text-body-md;
   }
 
   html,
@@ -19,11 +19,15 @@
   }
 
   h1 {
-    @apply text-xl text-black;
+    @apply text-head-xl text-black;
   }
 
   h2 {
-    @apply text-lg text-black;
+    @apply text-head-lg text-black;
+  }
+
+  h3 {
+    @apply text-head-md text-black;
   }
 }
 
@@ -58,10 +62,34 @@
 
   .header {
     height: var(--header-height);
-    @apply flex items-center bg-green-300;
+    @apply flex items-center bg-white;
   }
 
   .btn {
-    @apply rounded-full bg-purple px-4 py-1 text-sm text-white;
+    @apply rounded-full bg-purple px-8 py-2 text-head-md font-semibold text-white;
+  }
+
+  .btn-disabled {
+    @apply disabled:opacity-80;
+  }
+
+  .btn-hover {
+    @apply hover:bg-purple-light;
+  }
+
+  .btn-secondary {
+    @apply bg-purple-medium text-purple;
+  }
+
+  .btn-secondary-hover {
+    @apply hover:bg-grey-medium hover:text-purple;
+  }
+
+  .btn-destructive {
+    @apply bg-red text-white;
+  }
+
+  .btn-destructive-hover {
+    @apply hover:bg-red-light hover:text-white;
   }
 }
