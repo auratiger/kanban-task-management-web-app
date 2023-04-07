@@ -1,22 +1,57 @@
 "use client";
 
-import React from "react";
-import { useTheme } from "next-themes";
+import React, { AriaAttributes, useState } from "react";
 
-const Toggle = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
-  const currentTheme = theme === "system" ? systemTheme : theme;
+interface Props extends AriaAttributes {
+  checked?: boolean;
+  disabled?: boolean;
+  onChange?: (e: any, state: boolean) => void;
+  onActive?: (e: any) => void;
+  onInactive?: (e: any) => void;
+}
+
+const Toggle = ({
+  checked = false,
+  disabled = false,
+  onChange,
+  onActive,
+  onInactive,
+  ...rest
+}: Props) => {
+  const [isChecked, setIsChecked] = useState<boolean>(checked);
+
+  const handleOnChange = (e: any) => {
+    if (disabled) return;
+
+    const newChecked = !isChecked;
+    setIsChecked(newChecked);
+    onChange?.(e, newChecked);
+
+    if (newChecked) {
+      onActive?.(e);
+    } else {
+      onInactive?.(e);
+    }
+  };
 
   return (
-    <div>
-      <button
-        onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
-        className="text-2xl md:text-4xl absolute bottom-32 rounded-lg bg-gray-800 px-8 py-2 text-white transition-all duration-100 hover:bg-gray-600 dark:bg-red-500 dark:text-gray-800 dark:hover:bg-gray-300"
-      >
-        Toggle Mode
-      </button>
-      {currentTheme}
-    </div>
+    <label className="inline-flex h-[1.76rem] cursor-pointer items-center">
+      <input
+        type="checkbox"
+        value=""
+        className="peer sr-only"
+        aria-checked={isChecked}
+        checked={isChecked}
+        onClick={handleOnChange}
+        {...rest}
+        readOnly
+      />
+      <div
+        className={`toggle toggle-dark toggle-ball peer ${
+          disabled ? "bg-red-200" : "bg-purple"
+        }`}
+      ></div>
+    </label>
   );
 };
 

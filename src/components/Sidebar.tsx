@@ -1,6 +1,7 @@
 import React from "react";
 
 import BoardIcon from "./icons/BoardIcon";
+import ThemeToggle from "./ThemeToggle";
 
 const boards = [
   {
@@ -23,29 +24,43 @@ const Sidebar = () => {
   return (
     <aside className="sidebar sidebar-dark place-content-start gap-4 overflow-hidden p-8">
       <span className="uppercase">{`All boards (${count})`}</span>
-      <div className="grid gap-2">
-        <span className=""></span>
-        <span className=""></span>
+      <div className="mb-auto grid gap-2">
         {boards.map((board, index) => {
           return (
-            <div
-              key={index}
-              className={`relative flex items-center gap-2 py-2 ${
-                board.active &&
-                "text-white before:absolute before:inset-0 before:-z-10 before:-translate-x-1/2 before:rounded-full before:bg-purple before:px-[200px] before:content-['']"
-              }`}
-            >
-              <BoardIcon />
-              <span>{board.name}</span>
-            </div>
+            <BoardsItem key={index} name={board.name} active={board.active} />
           );
         })}
+        <BoardsItem name={"+ Create New Board"} className="text-purple" />
       </div>
-      <div className="flex items-center gap-2">
-        <BoardIcon />
-        <button className="text-purple">+ Create New Board</button>
-      </div>
+
+      <ThemeToggle />
     </aside>
+  );
+};
+
+interface BoardsItemProps {
+  name: string;
+  active?: boolean;
+  onClick?: () => void;
+  className?: string;
+}
+
+const BoardsItem = ({
+  name,
+  active = false,
+  onClick,
+  className,
+}: BoardsItemProps) => {
+  return (
+    <div
+      className={`relative flex items-center gap-2 py-2 ${
+        active &&
+        "text-white before:absolute before:inset-0 before:-z-10 before:-translate-x-1/2 before:rounded-full before:bg-purple before:px-[200px] before:content-['']"
+      } ${className}`}
+    >
+      <BoardIcon />
+      <button onClick={onClick}>{name}</button>
+    </div>
   );
 };
 

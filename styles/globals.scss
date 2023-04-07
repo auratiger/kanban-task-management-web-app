@@ -52,7 +52,7 @@
 
   .sidebar {
     width: var(--sidebar-width);
-    @apply relative left-0 isolate grid border-r-2 border-r-lines-light bg-white text-grey-medium;
+    @apply relative left-0 isolate flex flex-col border-r-2 border-r-lines-light bg-white text-grey-medium;
   }
 
   .sidebar-dark {
@@ -99,5 +99,22 @@
 
   .btn-destructive-hover {
     @apply hover:bg-red-light hover:text-white;
+  }
+
+  .toggle {
+    @apply relative h-[1.4rem] w-[3rem] rounded-full;
+  }
+
+  .toggle-ball {
+    --toggle-ball: 3px;
+
+    @apply after:absolute after:left-[var(--toggle-ball)] after:top-[50%] after:aspect-square after:h-[75%] after:-translate-y-1/2 after:rounded-full 
+      after:border after:border-gray-300 after:bg-white after:transition-all after:content-['']
+      peer-checked:after:left-[calc(100%_-_var(--toggle-ball))] peer-checked:after:-translate-x-full peer-checked:after:border-white 
+      peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300;
+  }
+
+  .toggle-dark {
+    @apply dark:border-gray-600 dark:peer-focus:ring-blue-800;
   }
 }
