@@ -1,23 +1,10 @@
 import React from "react";
 
+import { boards } from "sampleData/data";
+
 import BoardIcon from "./icons/BoardIcon";
 import ThemeToggle from "./ThemeToggle";
 import ToggleSidebarButton from "./ToggleSidebarButton";
-
-const boards = [
-  {
-    name: "Platform Launch",
-    active: true,
-  },
-  {
-    name: "Marketing Plan",
-    active: false,
-  },
-  {
-    name: "Roadmap",
-    active: false,
-  },
-];
 
 const Sidebar = () => {
   const count: number = boards.length;
