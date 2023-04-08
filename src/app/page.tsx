@@ -29,7 +29,7 @@ export default function Home() {
             template
           </span>
 
-          <div className="gra grid flex-1 place-content-center rounded-lg">
+          <div className="column-gradiant hover:column-gradiant-hover grid flex-1 place-content-center rounded-lg">
             <span className="text-head-xl text-grey-medium">+ New Column</span>
           </div>
         </section>

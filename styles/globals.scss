@@ -126,11 +126,11 @@
 }
 
 @layer utilities {
-  .gra {
-    background: linear-gradient(
-      180deg,
-      rgba(43, 44, 55, 0.25) 0%,
-      rgba(43, 44, 55, 0.125) 100%
-    );
+  .column-gradiant {
+    @apply bg-gradient-to-r from-grey-dark/[.25] to-grey-dark/[.125];
+  }
+
+  .column-gradiant-hover {
+    @apply bg-gradient-to-r from-grey-sdark/[.25] to-grey-sdark/[.125];
   }
 }
