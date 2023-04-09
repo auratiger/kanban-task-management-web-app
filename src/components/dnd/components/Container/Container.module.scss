@@ -3,7 +3,6 @@
   flex-direction: column;
   grid-auto-rows: max-content;
   overflow: hidden;
-  box-sizing: border-box;
   appearance: none;
   outline: none;
   min-width: 350px;
@@ -11,9 +10,6 @@
   border-radius: 5px;
   min-height: 200px;
   transition: background-color 350ms ease;
-  background-color: rgba(246, 246, 246, 1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  font-size: 1em;
 
   ul {
     display: grid;
@@ -78,10 +74,6 @@
   padding-right: 8px;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 
   &:hover {
     .Actions > * {

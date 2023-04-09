@@ -500,7 +500,9 @@ export function MultipleContainers({
               onClick={handleAddColumn}
               placeholder
             >
-              + Add column
+              <span className="text-head-xl text-grey-medium">
+                + New Column
+              </span>
             </DroppableContainer>
           )}
         </SortableContext>
