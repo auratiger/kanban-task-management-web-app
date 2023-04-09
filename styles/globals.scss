@@ -134,3 +134,12 @@
     @apply bg-gradient-to-r from-grey-sdark/[.25] to-grey-sdark/[.125];
   }
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
