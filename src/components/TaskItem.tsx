@@ -12,7 +12,7 @@ const TaskItem = ({ title, subtasks }: ColumnProps) => {
   }, 0);
 
   return (
-    <div className="grid rounded-lg bg-grey-dark px-4 py-5">
+    <div className="grid rounded-lg bg-grey-dark hover:bg-grey-sdark px-4 py-5">
       <span className="text-head-md">{title}</span>
       <span className="text-grey-medium">{`${completeSubstasks} of ${subtasks.length} subtasks`}</span>
     </div>

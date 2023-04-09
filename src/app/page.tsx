@@ -2,6 +2,7 @@ import { boards } from "sampleData/data";
 
 import Button from "@/components/Button";
 import Column from "@/components/Column";
+import SkeletonColumn from "@/components/SkeletonColumn";
 
 export default function Home() {
   const board = boards[0];
@@ -20,20 +21,7 @@ export default function Home() {
         return <Column key={index} name={name} tasks={tasks} />;
       })}
 
-      {!isBoardEmpty && (
-        <section className="flex h-full w-[300px] flex-col gap-8">
-          <span
-            className="text-head-md uppercase text-grey-medium text-transparent"
-            aria-hidden={true}
-          >
-            template
-          </span>
-
-          <div className="column-gradiant hover:column-gradiant-hover grid flex-1 place-content-center rounded-lg">
-            <span className="text-head-xl text-grey-medium">+ New Column</span>
-          </div>
-        </section>
-      )}
+      {!isBoardEmpty && <SkeletonColumn />}
     </main>
   );
 }
