@@ -1,5 +1,6 @@
 const defaultInitializer = (index: number) => index;
 
+// TODO: This will be deleted
 export function createRange<T = number>(
   length: number,
   initializer: (index: number) => any = defaultInitializer
