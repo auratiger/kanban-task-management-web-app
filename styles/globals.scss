@@ -5,7 +5,7 @@
 
 :root {
   --header-height: 60px;
-  --sidebar-width: 250px;
+  --sidebar-width: 300px;
 }
 
 @layer base {
@@ -127,10 +127,18 @@
 
 @layer utilities {
   .column-gradiant {
+    @apply bg-gradient-to-r from-grey-slight to-grey-slight/[.5];
+  }
+
+  .column-gradiant:hover {
+    @apply bg-gradient-to-r from-grey-medium/[.125] to-grey-medium/[.1];
+  }
+
+  .column-gradiant-dark {
     @apply bg-gradient-to-r from-grey-dark/[.25] to-grey-dark/[.125];
   }
 
-  .column-gradiant-hover {
+  .column-gradiant-dark:hover {
     @apply bg-gradient-to-r from-grey-sdark/[.25] to-grey-sdark/[.125];
   }
 }

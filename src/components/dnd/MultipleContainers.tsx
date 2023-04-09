@@ -96,6 +96,7 @@ function DroppableContainer({
         ...listeners,
       }}
       columns={columns}
+      items={items.length}
       {...props}
     >
       {children}
@@ -445,12 +446,7 @@ export function MultipleContainers({
       modifiers={modifiers}
     >
       <div
-        style={{
-          display: "inline-grid",
-          boxSizing: "border-box",
-          padding: 20,
-          gridAutoFlow: vertical ? "row" : "column",
-        }}
+        className={`grid ${vertical ? "grid-flow-row" : "grid-flow-col"} gap-8`}
       >
         <SortableContext
           items={[...containers, PLACEHOLDER_ID]}
@@ -550,6 +546,7 @@ export function MultipleContainers({
       <Container
         label={`Column ${containerId}`}
         columns={columns}
+        items={items[containerId].length}
         style={{
           height: "100%",
         }}

@@ -14,6 +14,7 @@ const colors = {
   },
   grey: {
     light: "hsl(220, 69%, 97%)", // #F4F7FD
+    slight: "hsl(219, 63%, 95%)", // #E9EFFA
     medium: "hsl(216, 15%, 57%)", // #828FA3
     sdark: "hsl(235, 10%, 22%)",
     dark: "hsl(235, 12%, 19%)", // #2B2C37

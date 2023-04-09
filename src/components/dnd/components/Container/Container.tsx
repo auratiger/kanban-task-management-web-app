@@ -8,6 +8,7 @@ import styles from "./Container.module.scss";
 export interface Props {
   children: React.ReactNode;
   columns?: number;
+  items?: number;
   label?: string;
   style?: React.CSSProperties;
   horizontal?: boolean;
@@ -26,6 +27,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(
     {
       children,
       columns = 1,
+      items = 0,
       handleProps,
       horizontal,
       hover,
@@ -59,16 +61,22 @@ export const Container = forwardRef<HTMLDivElement, Props>(
           horizontal && styles.horizontal,
           hover && styles.hover,
           placeholder && styles.placeholder,
+          placeholder &&
+            "column-gradiant dark:column-gradiant-dark border border-lines-light dark:border-lines-dark",
           scrollable && styles.scrollable,
-          shadow && styles.shadow,
-          "border border-lines-light dark:border-lines-dark"
+          shadow && styles.shadow
         )}
         onClick={onClick}
         tabIndex={onClick ? 0 : undefined}
       >
         {label ? (
           <div className={styles.Header}>
-            {label}
+            <div className="flex items-center gap-2">
+              {/* TODO: Pass a color value and use it for the cirle  */}
+              <div className="aspect-square w-4 rounded-full bg-red-300" />
+              <span className="text-head-md uppercase text-grey-medium">{`${label} (${items})`}</span>
+            </div>
+
             <div className={styles.Actions}>
               {onRemove ? <Remove onClick={onRemove} /> : undefined}
               <Handle {...handleProps} />

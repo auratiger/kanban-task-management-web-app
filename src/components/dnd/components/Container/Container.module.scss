@@ -5,18 +5,16 @@
   overflow: hidden;
   appearance: none;
   outline: none;
+  padding-right: 8px;
   min-width: 350px;
-  margin: 10px;
-  border-radius: 5px;
   min-height: 200px;
   transition: background-color 350ms ease;
 
   ul {
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 26px;
     grid-template-columns: repeat(var(--columns, 1), 1fr);
     list-style: none;
-    padding: 20px;
     margin: 0;
   }
 
@@ -33,11 +31,6 @@
     color: rgba(0, 0, 0, 0.5);
     background-color: transparent;
     border-style: dashed;
-    border-color: rgba(0, 0, 0, 0.08);
-
-    &:hover {
-      border-color: rgba(0, 0, 0, 0.15);
-    }
   }
 
   &.hover {
@@ -70,7 +63,6 @@
 
 .Header {
   display: flex;
-  padding: 5px 20px;
   padding-right: 8px;
   align-items: center;
   justify-content: space-between;
