@@ -128,17 +128,33 @@
 @layer utilities {
   .column-gradiant {
     @apply bg-gradient-to-r from-grey-slight to-grey-slight/[.5];
-  }
 
-  .column-gradiant:hover {
-    @apply bg-gradient-to-r from-grey-medium/[.125] to-grey-medium/[.1];
+    &:hover {
+      @apply bg-gradient-to-r from-grey-medium/[.125] to-grey-medium/[.1];
+    }
   }
 
   .column-gradiant-dark {
     @apply bg-gradient-to-r from-grey-dark/[.25] to-grey-dark/[.125];
+
+    &:hover {
+      @apply bg-gradient-to-r from-grey-sdark/[.25] to-grey-sdark/[.125];
+    }
   }
 
-  .column-gradiant-dark:hover {
-    @apply bg-gradient-to-r from-grey-sdark/[.25] to-grey-sdark/[.125];
+  .scrollbar {
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      @apply h-[9px] w-[9px];
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply rounded-lg bg-transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply rounded-lg border border-solid border-grey-medium bg-grey-slight dark:bg-grey-vdark;
+    }
   }
 }
