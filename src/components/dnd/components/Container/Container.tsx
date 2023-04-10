@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+
 import classNames from "classnames";
 
 import { Handle, Remove } from "../Item";
@@ -59,12 +60,13 @@ export const Container = forwardRef<HTMLDivElement, Props>(
           styles.Container,
           unstyled && styles.unstyled,
           horizontal && styles.horizontal,
-          hover && styles.hover,
+          hover && "bg-grey-slight dark:bg-grey-sdark",
           placeholder && styles.placeholder,
           placeholder &&
             "column-gradiant dark:column-gradiant-dark border border-lines-light dark:border-lines-dark",
           scrollable && styles.scrollable,
-          shadow && styles.shadow
+          shadow && styles.shadow,
+          "gap-8 rounded-lg p-2"
         )}
         onClick={onClick}
         tabIndex={onClick ? 0 : undefined}
