@@ -6,7 +6,7 @@ import { Handle, Remove } from "../Item";
 
 import styles from "./Container.module.scss";
 
-export interface Props {
+export interface ContainerProps {
   children: React.ReactNode;
   columns?: number;
   items?: number;
@@ -23,7 +23,7 @@ export interface Props {
   onRemove?(): void;
 }
 
-export const Container = forwardRef<HTMLDivElement, Props>(
+export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   (
     {
       children,
@@ -41,7 +41,7 @@ export const Container = forwardRef<HTMLDivElement, Props>(
       shadow,
       unstyled,
       ...props
-    }: Props,
+    }: ContainerProps,
     ref
   ) => {
     const Component = onClick ? "button" : "div";
@@ -90,3 +90,5 @@ export const Container = forwardRef<HTMLDivElement, Props>(
     );
   }
 );
+
+Container.displayName = "Container";

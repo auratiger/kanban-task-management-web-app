@@ -1,46 +1,45 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal, unstable_batchedUpdates } from "react-dom";
+
 import {
   CancelDrop,
   closestCenter,
-  pointerWithin,
-  rectIntersection,
   CollisionDetection,
+  defaultDropAnimationSideEffects,
   DndContext,
   DragOverlay,
   DropAnimation,
   getFirstCollision,
-  KeyboardSensor,
-  MouseSensor,
-  TouchSensor,
-  Modifiers,
-  useDroppable,
-  UniqueIdentifier,
-  useSensors,
-  useSensor,
-  MeasuringStrategy,
   KeyboardCoordinateGetter,
-  defaultDropAnimationSideEffects,
+  KeyboardSensor,
+  MeasuringStrategy,
+  Modifiers,
+  MouseSensor,
+  pointerWithin,
+  rectIntersection,
+  TouchSensor,
+  UniqueIdentifier,
+  useDroppable,
+  useSensor,
+  useSensors,
 } from "@dnd-kit/core";
 import {
   AnimateLayoutChanges,
-  SortableContext,
-  useSortable,
   arrayMove,
   defaultAnimateLayoutChanges,
-  verticalListSortingStrategy,
-  SortingStrategy,
   horizontalListSortingStrategy,
+  SortableContext,
+  SortingStrategy,
+  useSortable,
+  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { coordinateGetter as multipleContainersCoordinateGetter } from "./multipleContainersKeyboardCoordinates";
-import { Container, ContainerProps, Item } from "./components";
-import { createRange } from "./utilities";
-import useMountStatus from "@/hooks/useMountStatus";
 
-export default {
-  title: "Presets/Sortable/Multiple Containers",
-};
+import { Container, ContainerProps, Item } from "./components";
+import { coordinateGetter as multipleContainersCoordinateGetter } from "./multipleContainersKeyboardCoordinates";
+import { createRange } from "./utilities";
+
+import useMountStatus from "@/hooks/useMountStatus";
 
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
   defaultAnimateLayoutChanges({ ...args, wasDragging: true });
