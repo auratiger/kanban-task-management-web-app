@@ -55,10 +55,14 @@
     transition: width, padding;
     @apply flex flex-col border-r-[1px] border-r-lines-light bg-white
     p-8 text-grey-medium duration-1000;
-  }
 
-  .sidebar:has(button[show-sidebar="false"]) {
-    @apply w-0 px-0;
+    &:has(button[show-sidebar="false"]) {
+      @apply w-0 px-0;
+    }
+
+    .active-item {
+      @apply before:absolute before:inset-0 before:-z-10 before:-translate-x-1/2 before:rounded-full before:px-[200px] before:content-[''];
+    }
   }
 
   .sidebar-dark {

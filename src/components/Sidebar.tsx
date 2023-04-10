@@ -1,5 +1,6 @@
 import React from "react";
 
+import classNames from "classnames";
 import { boards } from "sampleData/data";
 
 import BoardIcon from "./icons/BoardIcon";
@@ -15,10 +16,10 @@ const Sidebar = () => {
       <div className="mb-auto grid gap-2">
         {boards.map((board, index) => {
           return (
-            <BoardsItem key={index} name={board.name} active={board.active} />
+            <BoardsItem key={index} name={board.name} active={index === 0} />
           );
         })}
-        <BoardsItem name={"+ Create New Board"} className="text-purple" />
+        <BoardsItem name={"+ Create New Board"} secondary />
       </div>
 
       <ThemeToggle />
@@ -30,6 +31,7 @@ const Sidebar = () => {
 interface BoardsItemProps {
   name: string;
   active?: boolean;
+  secondary?: boolean;
   onClick?: () => void;
   className?: string;
 }
@@ -37,15 +39,19 @@ interface BoardsItemProps {
 const BoardsItem = ({
   name,
   active = false,
+  secondary = false,
   onClick,
   className,
 }: BoardsItemProps) => {
   return (
     <div
-      className={`relative flex items-center gap-2 py-2 ${
-        active &&
-        "text-white before:absolute before:inset-0 before:-z-10 before:-translate-x-1/2 before:rounded-full before:bg-purple before:px-[200px] before:content-['']"
-      } ${className}`}
+      className={classNames(
+        "relative isolate flex items-center gap-2 fill-[#828FA3] py-2",
+        active && "active-item fill-white text-white before:bg-purple",
+        "hover:active-item hover:fill-purple hover:text-purple hover:before:bg-purple/10 hover:dark:before:bg-white",
+        secondary && "fill-purple text-purple",
+        `${className}`
+      )}
     >
       <BoardIcon />
       <button onClick={onClick}>{name}</button>
