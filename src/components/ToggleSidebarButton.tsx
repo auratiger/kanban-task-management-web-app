@@ -24,7 +24,7 @@ const ToggleSidebarButton = () => {
         <button
           show-sidebar={`${show}`}
           onClick={() => setShow(true)}
-          className="absolute bottom-6 left-0 z-40 grid aspect-[4/3] w-[50px] place-content-center rounded-r-full bg-purple text-transparent"
+          className="absolute bottom-8 left-0 grid aspect-[4/3] w-[50px] place-content-center rounded-r-full bg-purple text-transparent"
         >
           <ShowSidebarIcon />
         </button>

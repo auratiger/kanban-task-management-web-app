@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import classNames from "classnames";
 import { boards } from "sampleData/data";
@@ -11,50 +11,63 @@ const Sidebar = () => {
   const count: number = boards.length;
 
   return (
-    <aside className="sidebar sidebar-dark place-content-start gap-4 overflow-hidden whitespace-nowrap">
-      <span className="uppercase">{`All boards (${count})`}</span>
+    <aside className="sidebar sidebar-dark place-content-start gap-4 overflow-hidden whitespace-nowrap py-8">
+      <span className="px-8 uppercase">{`All boards (${count})`}</span>
       <div className="mb-auto grid gap-2">
         {boards.map((board, index) => {
           return (
-            <BoardsItem key={index} name={board.name} active={index === 0} />
+            <BoardItem
+              key={index}
+              active={index === 0}
+              renderIcon={() => <BoardIcon />}
+            >
+              <button>{board.name}</button>
+            </BoardItem>
           );
         })}
-        <BoardsItem name={"+ Create New Board"} secondary />
+        <BoardItem secondary renderIcon={() => <BoardIcon />}>
+          <button>{"+ Create New Board"}</button>
+        </BoardItem>
       </div>
 
-      <ThemeToggle />
-      <ToggleSidebarButton />
+      <div className="px-8">
+        <ThemeToggle />
+      </div>
+
+      <BoardItem>
+        <ToggleSidebarButton />
+      </BoardItem>
     </aside>
   );
 };
 
 interface BoardsItemProps {
-  name: string;
   active?: boolean;
   secondary?: boolean;
-  onClick?: () => void;
+  renderIcon?: () => ReactNode;
+  children?: any;
   className?: string;
 }
 
-const BoardsItem = ({
-  name,
+const BoardItem = ({
   active = false,
   secondary = false,
-  onClick,
+  renderIcon,
   className,
+  children,
 }: BoardsItemProps) => {
   return (
     <div
       className={classNames(
-        "relative isolate flex items-center gap-2 fill-[#828FA3] py-2",
-        active && "active-item fill-white text-white before:bg-purple",
-        "hover:active-item hover:fill-purple hover:text-purple hover:before:bg-purple/10 hover:dark:before:bg-white",
+        "flex w-[80%] items-center gap-2 rounded-r-full fill-[#828FA3] py-2 pl-8",
+        active && "bg-purple fill-white text-white",
+        "hover:bg-purple/10 hover:fill-purple hover:text-purple hover:dark:bg-white",
         secondary && "fill-purple text-purple",
         `${className}`
       )}
     >
-      <BoardIcon />
-      <button onClick={onClick}>{name}</button>
+      {renderIcon?.()}
+      {children}
     </div>
   );
 };

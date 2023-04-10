@@ -8,7 +8,7 @@ export default function Home() {
   const isBoardEmpty: boolean = board.columns.length <= 0;
 
   return (
-    <main className="scrollbar mb-1 flex flex-1 overflow-auto bg-grey-light p-8 dark:bg-grey-vdark">
+    <main className="scrollbar m-1 flex flex-1 overflow-auto bg-grey-light p-8 dark:bg-grey-vdark">
       {isBoardEmpty && (
         <div className="flex flex-1 flex-col items-center gap-4 self-center justify-self-center">
           <span>This board is empty. Create a new column to get started.</span>

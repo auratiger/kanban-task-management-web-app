@@ -54,7 +54,7 @@
     width: var(--sidebar-width);
     transition: width, padding;
     @apply flex flex-col border-r-[1px] border-r-lines-light bg-white
-    p-8 text-grey-medium duration-1000;
+    text-grey-medium duration-1000;
 
     &:has(button[show-sidebar="false"]) {
       @apply w-0 px-0;
