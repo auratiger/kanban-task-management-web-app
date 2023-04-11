@@ -133,7 +133,8 @@ export const Item = React.memo(
               disabled && styles.disabled,
               color &&
                 `before:absolute before:inset-0 before:w-[3px] before:rounded-l-lg before:content-[''] ${color}`,
-              "bg-white dark:bg-grey-dark"
+              "bg-white dark:bg-grey-dark",
+              "group"
             )}
             style={style}
             data-cypress="draggable-item"
@@ -142,9 +143,12 @@ export const Item = React.memo(
             tabIndex={!handle ? 0 : undefined}
           >
             {value}
-            <span className={styles.Actions}>
+            <span className="-mb-[15px] -mr-[10px] -mt-[12px] flex self-start">
               {onRemove ? (
-                <Remove className={styles.Remove} onClick={onRemove} />
+                <Remove
+                  className="invisible group-hover:visible"
+                  onClick={onRemove}
+                />
               ) : null}
               {handle ? <Handle {...handleProps} {...listeners} /> : null}
             </span>

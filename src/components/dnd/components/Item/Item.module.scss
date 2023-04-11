@@ -98,23 +98,4 @@ $focused-outline-color: #4c9ffe;
     box-shadow: var(--box-shadow-picked-up);
     opacity: 1;
   }
-
-  &:hover {
-    .Remove {
-      visibility: visible;
-    }
-  }
-}
-
-.Remove {
-  visibility: hidden;
-}
-
-.Actions {
-  display: flex;
-  align-self: flex-start;
-  margin-top: -12px;
-  margin-left: auto;
-  margin-bottom: -15px;
-  margin-right: -10px;
 }
