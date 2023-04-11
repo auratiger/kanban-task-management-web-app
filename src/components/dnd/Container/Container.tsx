@@ -2,8 +2,8 @@ import React, { forwardRef } from "react";
 
 import classNames from "classnames";
 
-import { Imtes } from "../../MultipleContainers";
 import { Handle, Remove } from "../Item";
+import { Item } from "../MultipleContainers";
 
 import styles from "./Container.module.scss";
 
@@ -11,7 +11,7 @@ export interface ContainerProps {
   children: React.ReactNode;
   columns?: number;
   color?: string;
-  items?: Imtes[];
+  items?: Item[];
   label?: string;
   style?: React.CSSProperties;
   horizontal?: boolean;

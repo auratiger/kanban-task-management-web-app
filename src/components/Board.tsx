@@ -2,11 +2,19 @@
 
 import React from "react";
 
-import { MultipleContainers } from "./dnd/MultipleContainers";
-import { createRange } from "./dnd/utilities";
+import { MultipleContainers } from "@/components/dnd/MultipleContainers";
 
 interface ColumnProps {
   columns: Array<any>;
+}
+
+// TODO: This will be deleted
+const defaultInitializer = (index: number) => index;
+export function createRange<T = number>(
+  length: number,
+  initializer: (index: number) => any = defaultInitializer
+): T[] {
+  return [...new Array(length)].map((_, index) => initializer(index));
 }
 
 const Board = ({ columns }: ColumnProps) => {

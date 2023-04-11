@@ -4,7 +4,7 @@ import type { DraggableSyntheticListeners } from "@dnd-kit/core";
 import type { Transform } from "@dnd-kit/utilities";
 import classNames from "classnames";
 
-import { Imtes } from "../../MultipleContainers";
+import { Item } from "../MultipleContainers";
 
 import { Handle, Remove } from "./components";
 
@@ -23,7 +23,7 @@ export interface TaskItemProps {
   listeners?: DraggableSyntheticListeners;
   sorting?: boolean;
   transition?: string | null;
-  value: Imtes;
+  value: Item;
   onRemove?(): void;
 }
 

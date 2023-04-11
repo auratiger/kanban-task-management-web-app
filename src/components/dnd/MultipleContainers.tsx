@@ -35,16 +35,15 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import { Container, ContainerProps, TaskItem } from "./components";
 import { coordinateGetter as multipleContainersCoordinateGetter } from "./multipleContainersKeyboardCoordinates";
+import { Container, ContainerProps, TaskItem } from ".";
 
 import useMountStatus from "@/hooks/useMountStatus";
 
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
   defaultAnimateLayoutChanges({ ...args, wasDragging: true });
 
-const includedUid = (uid: UniqueIdentifier) => (item: Imtes) =>
-  item.uid === uid;
+const includedUid = (uid: UniqueIdentifier) => (item: Item) => item.uid === uid;
 
 function DroppableContainer({
   children,
@@ -56,7 +55,7 @@ function DroppableContainer({
 }: ContainerProps & {
   disabled?: boolean;
   id: UniqueIdentifier;
-  items: Imtes[];
+  items: Item[];
 }) {
   const {
     active,
@@ -113,13 +112,13 @@ const dropAnimation: DropAnimation = {
   }),
 };
 
-export type Imtes = {
+export type Item = {
   uid: UniqueIdentifier;
   title: string;
   subtasks: [];
 };
 
-type Items = Record<UniqueIdentifier, Imtes[]>;
+type Items = Record<UniqueIdentifier, Item[]>;
 
 interface Props {
   adjustScale?: boolean;
@@ -138,7 +137,7 @@ interface Props {
 
 export const TRASH_ID = "void";
 const PLACEHOLDER_ID = "placeholder";
-const EMPTY: Imtes[] = [];
+const EMPTY: Item[] = [];
 
 export function MultipleContainers({
   adjustScale = false,
@@ -506,7 +505,7 @@ export function MultipleContainers({
     </DndContext>
   );
 
-  function renderSortableItemDragOverlay(item: Imtes) {
+  function renderSortableItemDragOverlay(item: Item) {
     return (
       <TaskItem
         value={item}
@@ -613,7 +612,7 @@ function Trash({ id }: { id: UniqueIdentifier }) {
 
 interface SortableItemProps {
   containerId: UniqueIdentifier;
-  item: Imtes;
+  item: Item;
   index: number;
   handle: boolean;
   disabled?: boolean;
