@@ -37,7 +37,6 @@ import { CSS } from "@dnd-kit/utilities";
 
 import { Container, ContainerProps, Item } from "./components";
 import { coordinateGetter as multipleContainersCoordinateGetter } from "./multipleContainersKeyboardCoordinates";
-import { createRange } from "./utilities";
 
 import useMountStatus from "@/hooks/useMountStatus";
 
@@ -132,8 +131,7 @@ interface Props {
     isDragOverlay: boolean;
   }): React.CSSProperties;
   wrapperStyle?(args: { index: number }): React.CSSProperties;
-  itemCount?: number;
-  items?: Items;
+  items: Items;
   handle?: boolean;
   renderItem?: any;
   strategy?: SortingStrategy;
@@ -150,7 +148,6 @@ const empty: UniqueIdentifier[] = [];
 
 export function MultipleContainers({
   adjustScale = false,
-  itemCount = 3,
   cancelDrop,
   columns,
   handle = false,
@@ -167,15 +164,7 @@ export function MultipleContainers({
   vertical = false,
   scrollable,
 }: Props) {
-  const [items, setItems] = useState<Items>(
-    () =>
-      initialItems ?? {
-        A: createRange(itemCount, (index) => `A${index + 1}`),
-        B: createRange(itemCount, (index) => `B${index + 1}`),
-        C: createRange(itemCount, (index) => `C${index + 1}`),
-        D: createRange(itemCount, (index) => `D${index + 1}`),
-      }
-  );
+  const [items, setItems] = useState<Items>(initialItems);
   const [containers, setContainers] = useState(
     Object.keys(items) as UniqueIdentifier[]
   );

@@ -142,7 +142,13 @@ export const Item = React.memo(
             {...props}
             tabIndex={!handle ? 0 : undefined}
           >
-            {value}
+            <div className="grid gap-1">
+              <span className="text-head-md text-black group-hover:text-purple dark:text-white">
+                {`Build UI for onboarding flow ${value}`}
+              </span>
+              <span className="text-grey-medium">{`${0} of ${3} subtasks`}</span>
+            </div>
+
             <span className="-mb-[15px] -mr-[10px] -mt-[12px] flex self-start">
               {onRemove ? (
                 <Remove
