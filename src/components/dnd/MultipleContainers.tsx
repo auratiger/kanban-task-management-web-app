@@ -113,7 +113,11 @@ const dropAnimation: DropAnimation = {
   }),
 };
 
-type Items = Record<UniqueIdentifier, UniqueIdentifier[]>;
+type Imtes = {
+  uid: UniqueIdentifier;
+};
+
+type Items = Record<UniqueIdentifier, Imtes[]>;
 
 interface Props {
   adjustScale?: boolean;
@@ -165,6 +169,8 @@ export function MultipleContainers({
   scrollable,
 }: Props) {
   const [items, setItems] = useState<Items>(initialItems);
+  console.log(items);
+
   const [containers, setContainers] = useState(
     Object.keys(items) as UniqueIdentifier[]
   );
@@ -172,6 +178,9 @@ export function MultipleContainers({
   const lastOverId = useRef<UniqueIdentifier | null>(null);
   const recentlyMovedToNewContainer = useRef(false);
   const isSortingContainer = activeId ? containers.includes(activeId) : false;
+
+  const includedUid = (uid: UniqueIdentifier) => (item: Imtes) =>
+    item.uid === uid;
 
   /**
    * Custom collision detection strategy optimized for multiple containers
@@ -219,7 +228,7 @@ export function MultipleContainers({
               droppableContainers: args.droppableContainers.filter(
                 (container) =>
                   container.id !== overId &&
-                  containerItems.includes(container.id)
+                  containerItems.some(includedUid(container.id))
               ),
             })[0]?.id;
           }
@@ -256,7 +265,7 @@ export function MultipleContainers({
       return id;
     }
 
-    return Object.keys(items).find((key) => items[key].includes(id));
+    return Object.keys(items).find((key) => items[key].some(includedUid(id)));
   };
 
   const getIndex = (id: UniqueIdentifier) => {
@@ -266,7 +275,7 @@ export function MultipleContainers({
       return -1;
     }
 
-    const index = items[container].indexOf(id);
+    const index = items[container].findIndex(includedUid(id));
 
     return index;
   };
@@ -319,8 +328,8 @@ export function MultipleContainers({
           setItems((items) => {
             const activeItems = items[activeContainer];
             const overItems = items[overContainer];
-            const overIndex = overItems.indexOf(overId);
-            const activeIndex = activeItems.indexOf(active.id);
+            const overIndex = overItems.findIndex(includedUid(overId));
+            const activeIndex = activeItems.findIndex(includedUid(active.id));
 
             let newIndex: number;
 
@@ -344,7 +353,7 @@ export function MultipleContainers({
             return {
               ...items,
               [activeContainer]: items[activeContainer].filter(
-                (item) => item !== active.id
+                (item) => item.uid !== active.id
               ),
               [overContainer]: [
                 ...items[overContainer].slice(0, newIndex),
@@ -386,7 +395,7 @@ export function MultipleContainers({
           setItems((items) => ({
             ...items,
             [activeContainer]: items[activeContainer].filter(
-              (id) => id !== activeId
+              (id) => id.uid !== activeId
             ),
           }));
           setActiveId(null);
@@ -401,7 +410,7 @@ export function MultipleContainers({
             setItems((items) => ({
               ...items,
               [activeContainer]: items[activeContainer].filter(
-                (id) => id !== activeId
+                (id) => id.uid !== activeId
               ),
               [newContainerId]: [active.id],
             }));
@@ -413,8 +422,10 @@ export function MultipleContainers({
         const overContainer = findContainer(overId);
 
         if (overContainer) {
-          const activeIndex = items[activeContainer].indexOf(active.id);
-          const overIndex = items[overContainer].indexOf(overId);
+          const activeIndex = items[activeContainer].findIndex(
+            includedUid(active.id)
+          );
+          const overIndex = items[overContainer].findIndex(includedUid(overId));
 
           if (activeIndex !== overIndex) {
             setItems((items) => ({
@@ -451,19 +462,22 @@ export function MultipleContainers({
               id={containerId}
               label={minimal ? undefined : `Column ${containerId}`}
               columns={columns}
-              items={items[containerId]}
+              items={items[containerId].map((el) => el.uid)}
               scrollable={scrollable}
               style={containerStyle}
               unstyled={minimal}
               onRemove={() => handleRemove(containerId)}
             >
-              <SortableContext items={items[containerId]} strategy={strategy}>
+              <SortableContext
+                items={items[containerId].map((el) => el.uid)}
+                strategy={strategy}
+              >
                 {items[containerId].map((value, index) => {
                   return (
                     <SortableItem
                       disabled={isSortingContainer}
-                      key={value}
-                      id={value}
+                      key={value.uid}
+                      id={value.uid}
                       index={index}
                       handle={handle}
                       style={getItemStyles}
@@ -545,19 +559,19 @@ export function MultipleContainers({
       >
         {items[containerId].map((item, index) => (
           <Item
-            key={item}
-            value={item}
+            key={item.uid}
+            value={item.uid}
             handle={handle}
             style={getItemStyles({
               containerId,
               overIndex: -1,
-              index: getIndex(item),
-              value: item,
+              index: getIndex(item.uid),
+              value: item.uid,
               isDragging: false,
               isSorting: false,
               isDragOverlay: false,
             })}
-            color={getColor(item)}
+            color={getColor(item.uid)}
             wrapperStyle={wrapperStyle({ index })}
             renderItem={renderItem}
           />
