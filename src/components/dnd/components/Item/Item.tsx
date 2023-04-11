@@ -10,7 +10,7 @@ import { Handle, Remove } from "./components";
 
 import styles from "./Item.module.scss";
 
-export interface Props {
+export interface TaskItemProps {
   dragOverlay?: boolean;
   color?: string;
   disabled?: boolean;
@@ -27,8 +27,8 @@ export interface Props {
   onRemove?(): void;
 }
 
-export const Item = React.memo(
-  React.forwardRef<HTMLLIElement, Props>(
+export const TaskItem = React.memo(
+  React.forwardRef<HTMLLIElement, TaskItemProps>(
     (
       {
         color,

@@ -35,7 +35,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import { Container, ContainerProps, Item } from "./components";
+import { Container, ContainerProps, TaskItem } from "./components";
 import { coordinateGetter as multipleContainersCoordinateGetter } from "./multipleContainersKeyboardCoordinates";
 
 import useMountStatus from "@/hooks/useMountStatus";
@@ -508,7 +508,7 @@ export function MultipleContainers({
 
   function renderSortableItemDragOverlay(item: Imtes) {
     return (
-      <Item
+      <TaskItem
         value={item}
         handle={handle}
         color={getColor(item.uid)}
@@ -531,7 +531,7 @@ export function MultipleContainers({
         unstyled={false}
       >
         {items[containerId].map((item) => (
-          <Item
+          <TaskItem
             key={item.uid}
             value={item}
             handle={handle}
@@ -635,7 +635,7 @@ function SortableItem({ disabled, item, index, handle }: SortableItemProps) {
   const mountedWhileDragging = isDragging && !mounted;
 
   return (
-    <Item
+    <TaskItem
       ref={disabled ? undefined : setNodeRef}
       value={item}
       dragging={isDragging}
