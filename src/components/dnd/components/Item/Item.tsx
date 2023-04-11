@@ -4,6 +4,8 @@ import type { DraggableSyntheticListeners } from "@dnd-kit/core";
 import type { Transform } from "@dnd-kit/utilities";
 import classNames from "classnames";
 
+import { Imtes } from "../../MultipleContainers";
+
 import { Handle, Remove } from "./components";
 
 import styles from "./Item.module.scss";
@@ -20,24 +22,9 @@ export interface Props {
   transform?: Transform | null;
   listeners?: DraggableSyntheticListeners;
   sorting?: boolean;
-  style?: React.CSSProperties;
   transition?: string | null;
-  wrapperStyle?: React.CSSProperties;
-  value: React.ReactNode;
+  value: Imtes;
   onRemove?(): void;
-  renderItem?(args: {
-    dragOverlay: boolean;
-    dragging: boolean;
-    sorting: boolean;
-    index: number | undefined;
-    fadeIn: boolean;
-    listeners: DraggableSyntheticListeners;
-    ref: React.Ref<HTMLElement>;
-    style: React.CSSProperties | undefined;
-    transform: Props["transform"];
-    transition: Props["transition"];
-    value: Props["value"];
-  }): React.ReactElement;
 }
 
 export const Item = React.memo(
@@ -54,13 +41,10 @@ export const Item = React.memo(
         index,
         listeners,
         onRemove,
-        renderItem,
         sorting,
-        style,
         transition,
         transform,
         value,
-        wrapperStyle,
         ...props
       },
       ref
@@ -77,21 +61,15 @@ export const Item = React.memo(
         };
       }, [dragOverlay]);
 
-      return renderItem ? (
-        renderItem({
-          dragOverlay: Boolean(dragOverlay),
-          dragging: Boolean(dragging),
-          sorting: Boolean(sorting),
-          index,
-          fadeIn: Boolean(fadeIn),
-          listeners,
-          ref,
-          style,
-          transform,
-          transition,
-          value,
-        })
-      ) : (
+      const completeSubstasks = value.subtasks.reduce(
+        (acc: number, current) => {
+          if (current.isCompleted) return acc + 1;
+          else return acc;
+        },
+        0
+      );
+
+      return (
         <li
           className={classNames(
             styles.Wrapper,
@@ -101,10 +79,7 @@ export const Item = React.memo(
           )}
           style={
             {
-              ...wrapperStyle,
-              transition: [transition, wrapperStyle?.transition]
-                .filter(Boolean)
-                .join(", "),
+              transition: [transition].filter(Boolean).join(", "),
               "--translate-x": transform
                 ? `${Math.round(transform.x)}px`
                 : undefined,
@@ -134,7 +109,6 @@ export const Item = React.memo(
               "bg-white dark:bg-grey-dark",
               "group"
             )}
-            style={style}
             data-cypress="draggable-item"
             {...(!handle ? listeners : undefined)}
             {...props}
@@ -142,9 +116,9 @@ export const Item = React.memo(
           >
             <div className="grid gap-1">
               <span className="text-head-md text-black group-hover:text-purple dark:text-white">
-                {`Build UI for onboarding flow ${value}`}
+                {`${value.title}`}
               </span>
-              <span className="text-grey-medium">{`${0} of ${3} subtasks`}</span>
+              <span className="text-grey-medium">{`${completeSubstasks} of ${value.subtasks.length} subtasks`}</span>
             </div>
 
             <span className="-mb-[15px] -mr-[10px] -mt-[12px] flex self-start">

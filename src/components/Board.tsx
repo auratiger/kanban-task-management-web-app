@@ -11,15 +11,41 @@ interface ColumnProps {
 
 const Board = ({ columns }: ColumnProps) => {
   const itemCount = 3;
-  const items = {
+  const items: any = {
     A: createRange(itemCount, (index) => {
       return {
         uid: `A${index + 1}`,
+        title: "some title",
+        subtasks: [
+          {
+            title: "Sign up page",
+            isCompleted: true,
+          },
+          {
+            title: "Sign in page",
+            isCompleted: false,
+          },
+          {
+            title: "Welcome page",
+            isCompleted: false,
+          },
+        ],
       };
     }),
     B: createRange(itemCount, (index) => {
       return {
         uid: `B${index + 1}`,
+        title: "ticket two very important",
+        subtasks: [
+          {
+            title: "Sign in page",
+            isCompleted: false,
+          },
+          {
+            title: "Welcome page",
+            isCompleted: false,
+          },
+        ],
       };
     }),
     // B: createRange(itemCount, (index) => `B${index + 1}`),
