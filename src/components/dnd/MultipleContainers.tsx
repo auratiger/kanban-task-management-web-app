@@ -89,6 +89,7 @@ function DroppableContainer({
         transform: CSS.Translate.toString(transform),
         opacity: isDragging ? 0.5 : undefined,
       }}
+      color={getColor(id)}
       hover={isOverContainer}
       handleProps={{
         ...attributes,
@@ -549,6 +550,7 @@ export function MultipleContainers({
         style={{
           height: "100%",
         }}
+        color={getColor(containerId)}
         shadow
         unstyled={false}
       >
@@ -604,13 +606,13 @@ export function MultipleContainers({
 function getColor(id: UniqueIdentifier) {
   switch (String(id)[0]) {
     case "A":
-      return "#7193f1";
+      return "before:bg-red-300";
     case "B":
-      return "#ffda6c";
+      return "before:bg-yellow-300";
     case "C":
-      return "#00bcd4";
+      return "before:bg-purple-300";
     case "D":
-      return "#ef769f";
+      return "before:bg-blue-300";
   }
 
   return undefined;

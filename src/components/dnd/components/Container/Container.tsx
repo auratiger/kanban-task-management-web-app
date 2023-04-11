@@ -9,6 +9,7 @@ import styles from "./Container.module.scss";
 export interface ContainerProps {
   children: React.ReactNode;
   columns?: number;
+  color?: string;
   items?: number;
   label?: string;
   style?: React.CSSProperties;
@@ -27,6 +28,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   (
     {
       children,
+      color,
       columns = 1,
       items = 0,
       handleProps,
@@ -73,9 +75,9 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
       >
         {label ? (
           <div className={styles.Header}>
-            <div className="flex items-center gap-2">
-              {/* TODO: Pass a color value and use it for the cirle  */}
-              <div className="aspect-square w-4 rounded-full bg-red-300" />
+            <div
+              className={`flex items-center gap-2 before:aspect-square before:w-4 before:rounded-full before:bg-red-200 before:content-[''] ${color}`}
+            >
               <span className="text-head-md uppercase text-grey-medium">{`${label} (${items})`}</span>
             </div>
 
