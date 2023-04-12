@@ -1,7 +1,7 @@
 import { boards } from "sampleData/data";
 
 import Board from "@/components/Board";
-import Button from "@/components/Button";
+import Button from "@/components/Button/Button";
 
 export default function Home() {
   const board = boards[0];

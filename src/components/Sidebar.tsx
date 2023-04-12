@@ -3,9 +3,9 @@ import React, { ReactNode } from "react";
 import classNames from "classnames";
 import { boards } from "sampleData/data";
 
+import ToggleSidebarButton from "./Button/ToggleSidebarButton";
 import BoardIcon from "./icons/BoardIcon";
-import ThemeToggle from "./ThemeToggle";
-import ToggleSidebarButton from "./ToggleSidebarButton";
+import ThemeToggle from "./Input/ThemeToggle";
 
 const Sidebar = () => {
   const count: number = boards.length;

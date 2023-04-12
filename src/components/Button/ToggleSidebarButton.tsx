@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 
-import HideSidebarIcon from "./icons/HideSidebarIcon";
-import ShowSidebarIcon from "./icons/ShowSidebarIcon";
+import HideSidebarIcon from "../icons/HideSidebarIcon";
+import ShowSidebarIcon from "../icons/ShowSidebarIcon";
 
 const ToggleSidebarButton = () => {
   const [show, setShow] = useState<boolean>(true);

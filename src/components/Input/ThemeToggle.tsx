@@ -3,8 +3,9 @@
 import React from "react";
 import { useTheme } from "next-themes";
 
-import DarkThemeIcon from "./icons/DarkThemeIcon";
-import LightThemeIcon from "./icons/LightThemeIcon";
+import DarkThemeIcon from "../icons/DarkThemeIcon";
+import LightThemeIcon from "../icons/LightThemeIcon";
+
 import Toggle from "./Toggle";
 
 const ThemeToggle = () => {

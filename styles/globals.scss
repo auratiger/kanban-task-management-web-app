@@ -83,6 +83,10 @@
     @apply dark:bg-grey-dark;
   }
 
+  .input-label {
+    @apply flex flex-col gap-2;
+  }
+
   .btn {
     @apply w-fit rounded-full bg-purple px-8 py-2 text-head-md font-semibold text-white;
   }

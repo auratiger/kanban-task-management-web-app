@@ -47,7 +47,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
     }: ContainerProps,
     ref
   ) => {
-    const Component = onClick ? "button" : "div";
+    const Component: any = onClick ? "button" : "div";
 
     return (
       <Component
