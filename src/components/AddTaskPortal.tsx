@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 
 interface PortalProps {
-  onClose?: () => void;
+  onClose?: (e) => void;
 }
 
 const AddTaskPortal = ({
@@ -23,7 +23,10 @@ const AddTaskPortal = ({
           className="fixed inset-0 grid place-content-center bg-black/50 mix-blend-normal"
           onClick={onClose}
         >
-          <div className="flex h-[800px] w-[500px] flex-col rounded-lg bg-white p-8">
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="flex h-[800px] w-[500px] flex-col gap-4 rounded-lg bg-white p-8 dark:bg-grey-dark"
+          >
             {children}
           </div>
         </div>,

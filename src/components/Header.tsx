@@ -6,6 +6,7 @@ import LogoIcon from "./icons/Logo";
 import VerticalEllipsis from "./icons/VerticalEllipsis";
 import Button from "./Button";
 import AddTaskPortal from "./AddTaskPortal";
+import Input from "./Input";
 
 const Header = () => {
   const [showPortal, setShowPortal] = useState<boolean>(false);
@@ -31,7 +32,16 @@ const Header = () => {
         />
         {showPortal && (
           <AddTaskPortal onClose={handleOnClose}>
-            <span className="text-head-lg text-black">Add New Task</span>
+            <span className="text-head-lg">Add New Task</span>
+
+            <Input placeholder="Enter Name" label="Title" />
+            <Input
+              placeholder="Enter Name"
+              label="Title"
+              onRemove={() => {
+                console.log("click");
+              }}
+            />
           </AddTaskPortal>
         )}
         <VerticalEllipsis />

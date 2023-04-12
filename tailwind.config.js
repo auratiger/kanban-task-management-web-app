@@ -58,7 +58,7 @@ module.exports = {
         },
       ],
       "body-lg": [
-        "0.75rem",
+        "0.95rem",
         {
           lineHeight: "15px",
           fontWeight: "700",
