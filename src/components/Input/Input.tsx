@@ -23,10 +23,8 @@ const Input = ({
   const Component: any = type === "textarea" ? "textarea" : "input";
 
   return (
-    <label className="input-label">
-      <span className="ml-4 text-body-lg text-grey-medium dark:text-white">
-        {label}
-      </span>
+    <label className="flex flex-col gap-2">
+      <span className="input-label">{label}</span>
       <div className="flex items-center gap-6">
         <Component
           className={classNames(
@@ -50,7 +48,7 @@ export interface GroupedInputProps {
 
 export const GroupedInput = ({ label, items }: GroupedInputProps) => {
   return (
-    <>
+    <div className="flex flex-col">
       {label && (
         <label id="groupLabel" className="input-label">
           {label}
@@ -59,7 +57,7 @@ export const GroupedInput = ({ label, items }: GroupedInputProps) => {
       {items.map((item, index: number) => (
         <Input key={`input-${index}`} {...item} aria-labelledby="groupLabel" />
       ))}
-    </>
+    </div>
   );
 };
 

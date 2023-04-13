@@ -33,6 +33,30 @@ const dropdownItems = [
   {
     name: "hello3",
   },
+  {
+    name: "hello",
+  },
+  {
+    name: "hello1",
+  },
+  {
+    name: "hello2",
+  },
+  {
+    name: "hello3",
+  },
+  {
+    name: "hello",
+  },
+  {
+    name: "hello1",
+  },
+  {
+    name: "hello2",
+  },
+  {
+    name: "hello3",
+  },
 ];
 
 const Header = () => {
@@ -77,7 +101,7 @@ const Header = () => {
               btnStyle={Style.SECONDARY}
             />
 
-            <Dropdown items={dropdownItems} filter />
+            <Dropdown items={dropdownItems} label="Current Status" filter />
           </AddTaskPortal>
         )}
         <VerticalEllipsis />

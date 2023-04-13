@@ -84,7 +84,7 @@
   }
 
   .input-label {
-    @apply flex flex-col gap-2;
+    @apply ml-4 text-body-lg text-grey-medium dark:text-white;
   }
 
   .btn {
