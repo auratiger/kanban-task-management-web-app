@@ -56,20 +56,15 @@ const Dropdown = ({
 
       <div className="relative isolate">
         <input
-          value={
-            selected
-              ? selected?.length > 25
-                ? selected?.substring(0, 25) + "..."
-                : selected
-              : placeholder
-          }
+          value={selected}
           {...rest}
+          placeholder={placeholder}
           id={inputId}
           type="button"
           readOnly
           onClick={handleClick}
           className={classNames(
-            "flex w-full items-center justify-between rounded-lg border border-lines-dark bg-transparent p-4 focus-within:border-purple",
+            "flex w-full items-center justify-between truncate rounded-lg border border-lines-dark bg-transparent p-4 px-10 placeholder:text-white focus-within:border-purple",
             !selected && "text-gray-700",
             `${className}`
           )}
@@ -99,9 +94,9 @@ const Dropdown = ({
           </div>
         )}
 
-        {items?.map(({ name }) => (
+        {items?.map(({ name }, index: number) => (
           <li
-            key={name}
+            key={`drop-${index}`}
             className={classNames(
               "flex rounded-sm text-sm hover:bg-purple/[.25] hover:text-black dark:hover:text-white",
               name?.toLowerCase() === selected?.toLowerCase() &&

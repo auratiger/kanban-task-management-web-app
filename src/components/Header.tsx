@@ -22,7 +22,7 @@ const items: Array<InputProps> = [
 
 const dropdownItems = [
   {
-    name: "hello",
+    name: "hehellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellollohellohellohellohellohellohellohellohellohellohello",
   },
   {
     name: "hello1",
@@ -101,7 +101,12 @@ const Header = () => {
               btnStyle={Style.SECONDARY}
             />
 
-            <Dropdown items={dropdownItems} label="Current Status" filter />
+            <Dropdown
+              items={dropdownItems}
+              label="Current Status"
+              filter
+              placeholder="place this"
+            />
           </AddTaskPortal>
         )}
         <VerticalEllipsis />

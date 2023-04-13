@@ -9,21 +9,11 @@ const ChevronIcon = ({ up = false, ...rest }: ChevronProps) => {
     <>
       {up ? (
         <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg" {...rest}>
-          <path
-            stroke="#635FC7"
-            stroke-width="2"
-            fill="none"
-            d="M9 6 5 2 1 6"
-          />
+          <path stroke="#635FC7" strokeWidth="2" fill="none" d="M9 6 5 2 1 6" />
         </svg>
       ) : (
         <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg" {...rest}>
-          <path
-            stroke="#635FC7"
-            stroke-width="2"
-            fill="none"
-            d="m1 1 4 4 4-4"
-          />
+          <path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4" />
         </svg>
       )}
     </>
