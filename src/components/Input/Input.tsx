@@ -32,7 +32,7 @@ const Input = ({
           className={classNames(
             "flex-1 resize-none rounded-lg border border-lines-dark bg-transparent p-4",
             "placeholder:text-inherit/25 text-body-lg leading-md text-black placeholder:font-normal dark:text-white",
-            "invalid:border-red-200 invalid:text-red-200",
+            "invalid:border-red invalid:text-red-200",
             `${className}`
           )}
           {...rest}

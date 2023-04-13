@@ -88,31 +88,27 @@
   }
 
   .btn {
-    @apply w-fit rounded-full bg-purple px-8 py-2 text-head-md font-semibold text-white;
-  }
+    @apply w-fit rounded-full bg-purple px-8 py-2 text-head-md font-semibold text-white disabled:opacity-80;
 
-  .btn-disabled {
-    @apply disabled:opacity-80;
-  }
-
-  .btn-hover {
-    @apply hover:bg-purple-light;
+    &:hover {
+      @apply hover:bg-purple-light;
+    }
   }
 
   .btn-secondary {
-    @apply bg-purple-medium text-purple;
-  }
+    @apply bg-purple/[.1] text-purple dark:bg-white;
 
-  .btn-secondary-hover {
-    @apply hover:bg-grey-medium hover:text-purple;
+    &:hover {
+      @apply hover:bg-purple/[.25] hover:text-purple hover:dark:bg-grey-light;
+    }
   }
 
   .btn-destructive {
     @apply bg-red text-white;
-  }
 
-  .btn-destructive-hover {
-    @apply hover:bg-red-light hover:text-white;
+    &:hover {
+      @apply hover:bg-red-light hover:text-white;
+    }
   }
 
   .toggle {

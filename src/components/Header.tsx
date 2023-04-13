@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-import Button from "./Button/Button";
+import Button, { Style } from "./Button/Button";
 import LogoIcon from "./icons/Logo";
 import VerticalEllipsis from "./icons/VerticalEllipsis";
 import Input, { GroupedInput, InputProps } from "./Input/Input";
@@ -55,6 +55,11 @@ const Header = () => {
             />
 
             <GroupedInput label="Subtasks" items={items} />
+            <Button
+              text="+ Add New Subtask"
+              expand
+              btnStyle={Style.SECONDARY}
+            />
           </AddTaskPortal>
         )}
         <VerticalEllipsis />
