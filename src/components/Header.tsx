@@ -7,6 +7,7 @@ import LogoIcon from "./icons/Logo";
 import VerticalEllipsis from "./icons/VerticalEllipsis";
 import Input, { GroupedInput, InputProps } from "./Input/Input";
 import AddTaskPortal from "./AddTaskPortal";
+import Dropdown from "./Dropdown";
 
 const items: Array<InputProps> = [
   {
@@ -16,6 +17,21 @@ const items: Array<InputProps> = [
   {
     placeholder: "e.g Take coffee break",
     onRemove: () => {},
+  },
+];
+
+const dropdownItems = [
+  {
+    name: "hello",
+  },
+  {
+    name: "hello1",
+  },
+  {
+    name: "hello2",
+  },
+  {
+    name: "hello3",
   },
 ];
 
@@ -60,6 +76,8 @@ const Header = () => {
               expand
               btnStyle={Style.SECONDARY}
             />
+
+            <Dropdown items={dropdownItems} filter />
           </AddTaskPortal>
         )}
         <VerticalEllipsis />
