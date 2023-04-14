@@ -5,10 +5,7 @@ interface PortalProps {
   onClose?: (e) => void;
 }
 
-const AddTaskPortal = ({
-  children,
-  onClose,
-}: PropsWithChildren<PortalProps>) => {
+const Portal = ({ children, onClose }: PropsWithChildren<PortalProps>) => {
   const ref = useRef<Element | null>(null);
   const [mounted, setMounted] = useState<boolean>(false);
 
@@ -25,7 +22,7 @@ const AddTaskPortal = ({
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="flex min-h-[500px] w-[500px] flex-col gap-4 rounded-lg bg-white p-8 dark:bg-grey-dark"
+            className="rounded-lg bg-white p-8 dark:bg-grey-dark"
           >
             {children}
           </div>
@@ -35,4 +32,4 @@ const AddTaskPortal = ({
     : null;
 };
 
-export default AddTaskPortal;
+export default Portal;

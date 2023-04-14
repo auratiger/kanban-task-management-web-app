@@ -2,62 +2,11 @@
 
 import React, { useState } from "react";
 
-import Button, { Size, Style } from "./Button/Button";
+import Button, { Size } from "./Button/Button";
 import LogoIcon from "./icons/Logo";
 import VerticalEllipsis from "./icons/VerticalEllipsis";
-import Input, { GroupedInput, InputProps } from "./Input/Input";
-import AddTaskPortal from "./AddTaskPortal";
-import Dropdown from "./Dropdown";
-
-const items: Array<InputProps> = [
-  {
-    placeholder: "e.g Take coffee break",
-    onRemove: () => {},
-  },
-  {
-    placeholder: "e.g Take coffee break",
-    onRemove: () => {},
-  },
-];
-
-const dropdownItems = [
-  {
-    name: "hehellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellollohellohellohellohellohellohellohellohellohellohello",
-  },
-  {
-    name: "hello1",
-  },
-  {
-    name: "hello2",
-  },
-  {
-    name: "hello3",
-  },
-  {
-    name: "hello",
-  },
-  {
-    name: "hello1",
-  },
-  {
-    name: "hello2",
-  },
-  {
-    name: "hello3",
-  },
-  {
-    name: "hello",
-  },
-  {
-    name: "hello1",
-  },
-  {
-    name: "hello2",
-  },
-  {
-    name: "hello3",
-  },
-];
+import AddTaskPortal from "./portal/AddTaskPortal";
+import Portal from "./portal/Portal";
 
 const Header = () => {
   // TODO: make this a usePortal hook
@@ -84,33 +33,9 @@ const Header = () => {
           size={Size.LARGE}
         />
         {showPortal && (
-          <AddTaskPortal onClose={handleOnClose}>
-            <span className="text-head-lg">Add New Task</span>
-
-            <Input placeholder="e.g Take coffee break" label="Title" />
-            <Input
-              placeholder="e.g It's always good to take a break. This 15 minute break will recharge the batteries a little."
-              type="textarea"
-              label="Description"
-              rows={5}
-            />
-
-            <GroupedInput label="Subtasks" items={items} />
-            <Button
-              text="+ Add New Subtask"
-              expand
-              btnStyle={Style.SECONDARY}
-            />
-
-            <Dropdown
-              items={dropdownItems}
-              label="Current Status"
-              filter
-              placeholder="place this"
-            />
-
-            <Button text="Save Changes" expand />
-          </AddTaskPortal>
+          <Portal onClose={handleOnClose}>
+            <AddTaskPortal />
+          </Portal>
         )}
         <VerticalEllipsis />
       </div>
