@@ -19,6 +19,7 @@ export interface DropdownProps
     InputHTMLAttributes<HTMLInputElement> {
   items?: Array<DropdownItem>;
   filter?: boolean;
+  firstDefault?: boolean;
   label?: string;
   placeholder?: string;
 }
@@ -28,6 +29,7 @@ const Dropdown = ({
   label,
   placeholder = "",
   filter,
+  firstDefault = true,
   className,
   onClick,
   ...rest
@@ -35,7 +37,7 @@ const Dropdown = ({
   const [items] = useState<Array<DropdownItem>>(initialItems || []);
 
   const [searchValue, setSearchValue] = useState("");
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(firstDefault ? items[0]?.name : "");
   const [open, setOpen] = useState(false);
 
   const inputId = useId();
