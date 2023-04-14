@@ -25,13 +25,6 @@ type CustomEventHandlers = {
   [K in keyof DOMAttributes<K>]?: CustomEventHandler;
 };
 
-type EventListenerMap = {
-  [K in keyof DOMAttributes<K>]: keyof GlobalEventHandlersEventMap;
-};
-type EventListenersRef = MutableRefObject<{
-  [K in keyof DOMAttributes<K>]?: (event: SyntheticEvent<any, Event>) => void;
-}>;
-
 export type UsePortalOptions = {
   closeOnOutsideClick?: boolean;
   closeOnEsc?: boolean;
@@ -42,15 +35,15 @@ export type UsePortalOptions = {
   onPortalClick?: CustomEventHandler;
 } & CustomEventHandlers;
 
-type UsePortalObjectReturn = {}; // TODO
-type UsePortalArrayReturn = []; // TODO
-
-export const errorMessage1 =
+const errorMessage =
   "You must either add a `ref` to the element you are interacting with or pass an `event` to openPortal(e) or togglePortal(e).";
 
-const PortalWrapper = ({ children }) => {
+const PortalWrapper = ({ children, onClose }) => {
   return (
-    <div className="fixed inset-0 grid place-content-center bg-black/50 mix-blend-normal">
+    <div
+      className="fixed inset-0 grid place-content-center bg-black/50 mix-blend-normal"
+      onClick={onClose}
+    >
       <div
         onClick={(e) => e.stopPropagation()}
         className="rounded-lg bg-white p-8 dark:bg-grey-dark"
@@ -130,7 +123,7 @@ export default function usePortal({
       // setTimeout, but for now this works
       if (targetEl.current == null) {
         setTimeout(() => setOpen(true), 0);
-        throw Error(errorMessage1);
+        throw Error(errorMessage);
       }
       if (onOpen) onOpen(customEvent);
       setOpen(true);
@@ -162,36 +155,15 @@ export default function usePortal({
 
   const handleOutsideMouseClick = useCallback(
     (e: MouseEvent): void => {
-      const containsTarget = (target: HTMLElRef) =>
-        target.current.contains(e.target as HTMLElement);
-      if (
-        containsTarget(portal) ||
-        (e as any).button !== 0 ||
-        !open.current ||
-        containsTarget(targetEl)
-      )
-        return;
+      if (isServer || !(portal.current instanceof HTMLElement)) return;
+
+      const customEvent = createCustomEvent(e);
+      if (onPortalClick) onPortalClick(customEvent);
+
       if (closeOnOutsideClick) closePortal(e);
     },
     [isServer, closePortal, closeOnOutsideClick, portal]
   );
-
-  const handleMouseDown = useCallback(
-    (e: MouseEvent): void => {
-      if (isServer || !(portal.current instanceof HTMLElement)) return;
-      const customEvent = createCustomEvent(e);
-      if (
-        portal.current.contains(customEvent.target as HTMLElement) &&
-        onPortalClick
-      )
-        onPortalClick(customEvent);
-      handleOutsideMouseClick(e);
-    },
-    [handleOutsideMouseClick]
-  );
-
-  // used to remove the event listeners on unmount
-  const eventListeners = useRef({}) as EventListenersRef;
 
   useEffect(() => {
     if (isServer) return;
@@ -201,48 +173,12 @@ export default function usePortal({
     )
       return;
 
-    // TODO: eventually will need to figure out a better solution for this.
-    // Surely we can find a way to map onScroll/onWheel -> scroll/wheel better,
-    // but for all other event handlers. For now this works.
-    const eventHandlerMap: EventListenerMap = {
-      onScroll: "scroll",
-      onWheel: "wheel",
-    };
     const node = portal.current;
     elToMountTo.appendChild(portal.current);
-    // handles all special case handlers. Currently only onScroll and onWheel
-    Object.entries(eventHandlerMap).forEach(
-      ([handlerName /* onScroll */, eventListenerName /* scroll */]) => {
-        if (!eventHandlers[handlerName as keyof EventListenerMap]) return;
-        eventListeners.current[handlerName as keyof EventListenerMap] = (
-          e: any
-        ) =>
-          (eventHandlers[handlerName as keyof EventListenerMap] as any)(
-            createCustomEvent(e)
-          );
-        document.addEventListener(
-          eventListenerName as keyof GlobalEventHandlersEventMap,
-          eventListeners.current[handlerName as keyof EventListenerMap] as any
-        );
-      }
-    );
     document.addEventListener("keydown", handleKeydown);
-    document.addEventListener("mousedown", handleMouseDown as any);
 
     return () => {
-      // handles all special case handlers. Currently only onScroll and onWheel
-      Object.entries(eventHandlerMap).forEach(
-        ([handlerName, eventListenerName]) => {
-          if (!eventHandlers[handlerName as keyof EventListenerMap]) return;
-          document.removeEventListener(
-            eventListenerName as keyof GlobalEventHandlersEventMap,
-            eventListeners.current[handlerName as keyof EventListenerMap] as any
-          );
-          delete eventListeners.current[handlerName as keyof EventListenerMap];
-        }
-      );
       document.removeEventListener("keydown", handleKeydown);
-      document.removeEventListener("mousedown", handleMouseDown as any);
       elToMountTo.removeChild(node);
     };
   }, [isServer, handleOutsideMouseClick, handleKeydown, elToMountTo, portal]);
@@ -251,7 +187,9 @@ export default function usePortal({
     ({ children }: { children: ReactNode }) => {
       if (portal.current != null)
         return createPortal(
-          <PortalWrapper>{children}</PortalWrapper>,
+          <PortalWrapper onClose={handleOutsideMouseClick}>
+            {children}
+          </PortalWrapper>,
           portal.current
         );
       return null;
