@@ -54,17 +54,16 @@ const Dropdown = ({
         </label>
       )}
 
-      <div className="relative isolate">
+      <button className="relative isolate flex w-full" onClick={handleClick}>
         <input
           value={selected}
           {...rest}
           placeholder={placeholder}
           id={inputId}
-          type="button"
+          type="text"
           readOnly
-          onClick={handleClick}
           className={classNames(
-            "flex w-full items-center justify-between truncate rounded-lg border border-lines-dark bg-transparent p-4 px-10 placeholder:text-white focus-within:border-purple",
+            "flex flex-1 items-center justify-between truncate rounded-lg border border-lines-dark bg-transparent py-4 pl-5 pr-[max(10%,1.5rem)] placeholder:text-white focus-within:border-purple",
             !selected && "text-gray-700",
             `${className}`
           )}
@@ -73,7 +72,7 @@ const Dropdown = ({
           up={open}
           className="absolute right-[4%] top-1/2 -translate-y-1/2 scale-150"
         />
-      </div>
+      </button>
 
       <ul
         className={classNames(
@@ -108,7 +107,7 @@ const Dropdown = ({
             )}
           >
             <button
-              className="flex-1 p-2 text-left"
+              className="flex-1 truncate p-2 text-left"
               onClick={() => {
                 if (name?.toLowerCase() !== selected.toLowerCase()) {
                   setSelected(name);
