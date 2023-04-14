@@ -1,23 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import Button, { Size } from "./Button/Button";
 import LogoIcon from "./icons/Logo";
 import VerticalEllipsis from "./icons/VerticalEllipsis";
 import AddTaskPortal from "./portal/AddTaskPortal";
-import Portal from "./portal/Portal";
+import usePortal from "../hooks/usePortal";
 
 const Header = () => {
-  // TODO: make this a usePortal hook
-  const [showPortal, setShowPortal] = useState<boolean>(false);
-  const handleNewTask = () => {
-    setShowPortal(true);
-  };
-
-  const handleOnClose = () => {
-    setShowPortal(false);
-  };
+  const { openPortal, closePortal, isOpen, Portal } = usePortal();
 
   return (
     <header className="header header-dark">
@@ -29,11 +21,11 @@ const Header = () => {
         <Button
           className="ml-auto"
           text="+Add New Task"
-          onClick={handleNewTask}
+          onClick={openPortal}
           size={Size.LARGE}
         />
-        {showPortal && (
-          <Portal onClose={handleOnClose}>
+        {isOpen && (
+          <Portal onClose={closePortal}>
             <AddTaskPortal />
           </Portal>
         )}

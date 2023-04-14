@@ -32,7 +32,6 @@ export default function RootLayout({
             <Sidebar />
             {children}
           </div>
-          <div id="myportal" />
         </Providers>
       </body>
     </html>

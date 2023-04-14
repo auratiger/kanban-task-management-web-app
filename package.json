@@ -56,7 +56,8 @@
     "next-themes": "0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.60.0"
+    "sass": "^1.60.0",
+    "use-ssr": "^1.0.25"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
