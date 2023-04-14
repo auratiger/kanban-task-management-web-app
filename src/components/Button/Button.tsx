@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { AriaAttributes, ButtonHTMLAttributes } from "react";
 
 export enum Style {
@@ -9,6 +10,7 @@ export enum Style {
 export enum Size {
   LARGE,
   MEDIUM,
+  SMALL,
 }
 
 interface Props
@@ -19,6 +21,19 @@ interface Props
   size?: Size;
   expand?: boolean;
 }
+
+const chooseSize = (style: Size) => {
+  switch (style) {
+    case Size.LARGE:
+      return "px-12 py-4 text-head-md";
+
+    case Size.MEDIUM:
+      return "px-8 py-4 text-body-lg";
+
+    case Size.SMALL:
+      return "px-8 py-3 text-body-lg";
+  }
+};
 
 const chooseStyle = (style: Style) => {
   switch (style) {
@@ -44,9 +59,13 @@ const Button = ({
 }: Props) => {
   return (
     <button
-      className={`btn ${chooseStyle(btnStyle)} ${className} ${
+      className={classNames(
+        "btn",
+        `${chooseStyle(btnStyle)}`,
+        `${chooseSize(size)}`,
+        `${className}`,
         expand && "w-auto"
-      }`}
+      )}
       onClick={onClick}
       {...rest}
     >

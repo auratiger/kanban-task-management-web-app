@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  --header-height: 60px;
+  --header-height: 80px;
   --sidebar-width: 300px;
 }
 
@@ -88,7 +88,7 @@
   }
 
   .btn {
-    @apply w-fit rounded-full bg-purple px-8 py-2 text-head-md font-semibold text-white disabled:opacity-80;
+    @apply w-fit rounded-full bg-purple font-semibold tracking-sm text-white disabled:opacity-80;
 
     &:hover {
       @apply hover:bg-purple-light;

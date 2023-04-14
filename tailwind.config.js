@@ -102,7 +102,7 @@ module.exports = {
       xl: "3rem",
     },
     letterSpacing: {
-      sm: ".24rem",
+      sm: ".20rem",
     },
     extend: {
       fontFamily: {

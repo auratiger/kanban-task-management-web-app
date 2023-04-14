@@ -25,7 +25,7 @@ const AddTaskPortal = ({
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="flex h-[800px] w-[500px] flex-col gap-4 rounded-lg bg-white p-8 dark:bg-grey-dark"
+            className="flex min-h-[500px] w-[500px] flex-col gap-4 rounded-lg bg-white p-8 dark:bg-grey-dark"
           >
             {children}
           </div>

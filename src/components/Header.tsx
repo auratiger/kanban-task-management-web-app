@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-import Button, { Style } from "./Button/Button";
+import Button, { Size, Style } from "./Button/Button";
 import LogoIcon from "./icons/Logo";
 import VerticalEllipsis from "./icons/VerticalEllipsis";
 import Input, { GroupedInput, InputProps } from "./Input/Input";
@@ -81,6 +81,7 @@ const Header = () => {
           className="ml-auto"
           text="+Add New Task"
           onClick={handleNewTask}
+          size={Size.LARGE}
         />
         {showPortal && (
           <AddTaskPortal onClose={handleOnClose}>
@@ -107,6 +108,8 @@ const Header = () => {
               filter
               placeholder="place this"
             />
+
+            <Button text="Save Changes" expand />
           </AddTaskPortal>
         )}
         <VerticalEllipsis />
