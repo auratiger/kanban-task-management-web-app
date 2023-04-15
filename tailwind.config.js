@@ -32,6 +32,7 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx}",
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/hooks/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class", // or 'media' or 'class'
   theme: {
