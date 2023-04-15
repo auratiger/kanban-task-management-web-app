@@ -55,10 +55,12 @@ const Button = ({
   btnStyle = Style.PRIMARY,
   size = Size.MEDIUM,
   expand = false,
+  type = "button",
   ...rest
 }: Props) => {
   return (
     <button
+      type={type}
       className={classNames(
         "btn",
         `${chooseStyle(btnStyle)}`,

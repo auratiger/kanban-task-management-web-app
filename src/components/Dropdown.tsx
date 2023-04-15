@@ -1,6 +1,7 @@
 import React, {
   AriaAttributes,
   InputHTMLAttributes,
+  Ref,
   useId,
   useState,
 } from "react";
@@ -18,20 +19,24 @@ export interface DropdownProps
   extends AriaAttributes,
     InputHTMLAttributes<HTMLInputElement> {
   items?: Array<DropdownItem>;
+  innerRef?: Ref<HTMLInputElement>;
   filter?: boolean;
   firstDefault?: boolean;
   label?: string;
   placeholder?: string;
+  onSelection?: (state) => void;
 }
 
 const Dropdown = ({
   items: initialItems,
   label,
+  innerRef,
   placeholder = "",
   filter,
   firstDefault = true,
   className,
   onClick,
+  onSelection,
   ...rest
 }: DropdownProps) => {
   const [items] = useState<Array<DropdownItem>>(initialItems || []);
@@ -48,6 +53,15 @@ const Dropdown = ({
     onClick?.(e);
   };
 
+  const handleSelection = (name) => {
+    if (name?.toLowerCase() !== selected.toLowerCase()) {
+      setSelected(name);
+      setSearchValue("");
+    }
+    setOpen(false);
+    onSelection?.(name);
+  };
+
   return (
     <div className="relative isolate">
       {label && (
@@ -56,8 +70,13 @@ const Dropdown = ({
         </label>
       )}
 
-      <button className="relative isolate flex w-full" onClick={handleClick}>
+      <button
+        type="button"
+        className="relative isolate flex w-full"
+        onClick={handleClick}
+      >
         <input
+          ref={innerRef}
           value={selected}
           {...rest}
           placeholder={placeholder}
@@ -109,14 +128,9 @@ const Dropdown = ({
             )}
           >
             <button
+              type="button"
               className="flex-1 truncate p-2 text-left"
-              onClick={() => {
-                if (name?.toLowerCase() !== selected.toLowerCase()) {
-                  setSelected(name);
-                  setOpen(false);
-                  setSearchValue("");
-                }
-              }}
+              onClick={() => handleSelection(name)}
             >
               {name}
             </button>

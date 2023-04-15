@@ -1,4 +1,4 @@
-import React, { AriaAttributes, InputHTMLAttributes } from "react";
+import React, { AriaAttributes, InputHTMLAttributes, Ref } from "react";
 
 import classNames from "classnames";
 
@@ -9,6 +9,7 @@ export interface InputProps
     InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   onRemove?: () => void;
+  innerRef?: Ref<HTMLInputElement | HTMLTextAreaElement>;
   rows?: number;
   cols?: number;
 }
@@ -16,6 +17,7 @@ export interface InputProps
 const Input = ({
   label,
   type = "text",
+  innerRef,
   onRemove,
   className,
   ...rest
@@ -27,6 +29,7 @@ const Input = ({
       <span className="input-label">{label}</span>
       <div className="flex items-center gap-6">
         <Component
+          ref={innerRef}
           className={classNames(
             "flex-1 resize-none rounded-lg border border-lines-dark bg-transparent p-4",
             "placeholder:text-inherit/25 text-body-lg leading-md text-black placeholder:font-normal dark:text-white",
