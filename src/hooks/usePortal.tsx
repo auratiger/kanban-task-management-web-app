@@ -185,7 +185,7 @@ export default function usePortal({
 
   const Portal = useCallback(
     ({ children }: { children: ReactNode }) => {
-      if (portal.current != null)
+      if (isOpen && portal.current != null)
         return createPortal(
           <PortalWrapper onClose={handleOutsideMouseClick}>
             {children}
@@ -194,7 +194,7 @@ export default function usePortal({
         );
       return null;
     },
-    [portal]
+    [portal, isOpen]
   );
 
   return Object.assign(
