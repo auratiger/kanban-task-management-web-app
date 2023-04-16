@@ -1,16 +1,6 @@
 import Button, { Style } from "../Button/Button";
-import Input, { GroupedInput, InputProps } from "../Input/Input";
-
-const items: Array<InputProps> = [
-  {
-    placeholder: "e.g Take coffee break",
-    onRemove: () => {},
-  },
-  {
-    placeholder: "e.g Take coffee break",
-    onRemove: () => {},
-  },
-];
+import GroupedInput from "../Input/GroupedInput";
+import Input from "../Input/Input";
 
 const BoardPortal = () => {
   return (
@@ -19,7 +9,7 @@ const BoardPortal = () => {
 
       <Input placeholder="e.g Web Design" label="Name" />
 
-      <GroupedInput label="Columns" items={items} />
+      <GroupedInput form={{} as any} label="Columns" />
       <Button text="+ Add New Column" expand btnStyle={Style.SECONDARY} />
 
       <Button text="Create New Board" expand />

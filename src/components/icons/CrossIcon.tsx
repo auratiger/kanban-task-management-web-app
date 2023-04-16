@@ -1,6 +1,6 @@
 const CrossIcon = (props: any) => {
   return (
-    <button {...props}>
+    <button type="button" className="px-2 py-4" {...props}>
       <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg">
         <g fill="#828FA3" fillRule="evenodd">
           <path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z" />

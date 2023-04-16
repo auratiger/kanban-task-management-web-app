@@ -1,19 +1,8 @@
-import Button, { Style } from "../Button/Button";
+import Button from "../Button/Button";
 import Dropdown from "../Dropdown";
-import Input, { GroupedInput, InputProps } from "../Input/Input";
+import Input from "../Input/Input";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
-
-const items: Array<InputProps> = [
-  {
-    placeholder: "e.g Take coffee break",
-    onRemove: () => {},
-  },
-  {
-    placeholder: "e.g Take coffee break",
-    onRemove: () => {},
-  },
-];
+import GroupedInput from "../Input/GroupedInput";
 
 const dropdownItems = [
   {
@@ -55,22 +44,23 @@ const dropdownItems = [
 ];
 
 const AddTaskPortal = () => {
-  const {
-    register,
-    getValues,
-    setValue,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm({
+  const form = useForm({
     shouldUseNativeValidation: true,
   });
 
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { isValid },
+  } = form;
+
   const onSubmit = (data) => {
-    console.log("Submitted form data:", data);
+    console.log("Submitted form data:", data, isValid);
   };
 
   const { ref: titleRef, ...titleControl } = register("title", {
-    required: false,
+    required: true,
     maxLength: 30,
   });
 
@@ -101,8 +91,7 @@ const AddTaskPortal = () => {
         {...descriptionControl}
       />
 
-      <GroupedInput label="Subtasks" items={items} />
-      <Button text="+ Add New Subtask" expand btnStyle={Style.SECONDARY} />
+      <GroupedInput form={form} label="Subtasks" />
 
       <Dropdown
         innerRef={statusRef}
