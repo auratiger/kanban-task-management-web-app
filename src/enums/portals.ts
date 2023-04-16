@@ -1,0 +1,5 @@
+export enum PORTALS {
+  ADD_TASK,
+  CREATE_BOARD,
+  DELETE_BOARD,
+}

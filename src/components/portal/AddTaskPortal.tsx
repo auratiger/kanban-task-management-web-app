@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "../Button/Button";
 import Dropdown from "../Dropdown";
 import Input from "../Input/Input";

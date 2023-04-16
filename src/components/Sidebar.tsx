@@ -1,5 +1,3 @@
-"use client";
-
 import React, { ReactNode } from "react";
 
 import classNames from "classnames";
@@ -8,13 +6,11 @@ import { boards } from "sampleData/data";
 import ToggleSidebarButton from "./Button/ToggleSidebarButton";
 import BoardIcon from "./icons/BoardIcon";
 import ThemeToggle from "./Input/ThemeToggle";
-import BoardPortal from "./portal/BoardPortal";
-import usePortal from "@/hooks/usePortal";
+import OpenPortalButton from "./OpenPortalButton";
+import { PORTALS } from "@/enums/portals";
 
 const Sidebar = () => {
   const count: number = boards.length;
-
-  const { openPortal, closePortal, Portal } = usePortal();
 
   return (
     <>
@@ -33,7 +29,11 @@ const Sidebar = () => {
             );
           })}
           <BoardItem secondary renderIcon={() => <BoardIcon />}>
-            <button onClick={openPortal}>{"+ Create New Board"}</button>
+            <OpenPortalButton
+              text="+ Create New Board"
+              portal={PORTALS.CREATE_BOARD}
+              unstyled
+            />
           </BoardItem>
         </div>
 
@@ -45,11 +45,6 @@ const Sidebar = () => {
           <ToggleSidebarButton />
         </BoardItem>
       </aside>
-
-      {/* TODO: maybe separate this into it's own client component */}
-      <Portal onClose={closePortal}>
-        <BoardPortal />
-      </Portal>
     </>
   );
 };
