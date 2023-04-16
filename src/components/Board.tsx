@@ -1,12 +1,6 @@
-"use client";
-
 import React from "react";
 
 import { MultipleContainers } from "@/components/dnd/MultipleContainers";
-
-interface ColumnProps {
-  columns: Array<any>;
-}
 
 // TODO: This will be deleted
 const defaultInitializer = (index: number) => index;
@@ -17,7 +11,7 @@ export function createRange<T = number>(
   return [...new Array(length)].map((_, index) => initializer(index));
 }
 
-const Board = ({ columns }: ColumnProps) => {
+const Board = () => {
   const itemCount = 3;
   const items: any = {
     A: createRange(itemCount, (index) => {

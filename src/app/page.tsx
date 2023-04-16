@@ -1,11 +1,19 @@
 import { boards } from "sampleData/data";
 
+import { GET_BOARDS } from "graphql/boards";
+import { getClient } from "@/apollo";
+
 import Board from "@/components/Board";
 import Button from "@/components/Button/Button";
 
-export default function Home() {
+export default async function Home() {
   const board = boards[0];
   const isBoardEmpty: boolean = board.columns.length <= 0;
+
+  const client = getClient();
+  const { data } = await client.query({ query: GET_BOARDS });
+
+  console.log(data);
 
   return (
     <main className="scrollbar m-1 flex flex-1 overflow-auto bg-grey-light p-8 dark:bg-grey-vdark">
@@ -16,7 +24,7 @@ export default function Home() {
         </div>
       )}
 
-      <Board columns={board.columns} />
+      <Board />
     </main>
   );
 }
