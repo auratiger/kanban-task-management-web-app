@@ -1,16 +1,16 @@
 import {
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  useMemo,
-  ReactNode,
   DOMAttributes,
-  SyntheticEvent,
-  MutableRefObject,
   MouseEvent,
+  MutableRefObject,
+  ReactNode,
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
-import { createPortal, findDOMNode } from "react-dom";
+import { createPortal } from "react-dom";
+
 import useSSR from "use-ssr";
 
 type HTMLElRef = MutableRefObject<HTMLElement>;
@@ -28,7 +28,6 @@ type CustomEventHandlers = {
 export type UsePortalOptions = {
   closeOnOutsideClick?: boolean;
   closeOnEsc?: boolean;
-  bindTo?: HTMLElement; // attach the portal to this node in the DOM
   isOpen?: boolean;
   onOpen?: CustomEventHandler;
   onClose?: CustomEventHandler;
@@ -57,7 +56,6 @@ const PortalWrapper = ({ children, onClose }) => {
 export default function usePortal({
   closeOnOutsideClick = true,
   closeOnEsc = true,
-  bindTo, // attach the portal to this node in the DOM
   isOpen: defaultIsOpen = false,
   onOpen,
   onClose,
@@ -84,11 +82,6 @@ export default function usePortal({
     if (isBrowser && !portal.current)
       portal.current = document.createElement("div");
   }, [isBrowser, portal]);
-
-  const elToMountTo = useMemo(() => {
-    if (isServer) return;
-    return (bindTo && findDOMNode(bindTo)) || document.body;
-  }, [isServer, bindTo]);
 
   const createCustomEvent = (e: any) => {
     if (!e) return { portal, targetEl, event: e };
@@ -167,21 +160,14 @@ export default function usePortal({
 
   useEffect(() => {
     if (isServer) return;
-    if (
-      !(elToMountTo instanceof HTMLElement) ||
-      !(portal.current instanceof HTMLElement)
-    )
-      return;
+    if (!(portal.current instanceof HTMLElement)) return;
 
-    const node = portal.current;
-    elToMountTo.appendChild(portal.current);
     document.addEventListener("keydown", handleKeydown);
 
     return () => {
       document.removeEventListener("keydown", handleKeydown);
-      elToMountTo.removeChild(node);
     };
-  }, [isServer, handleOutsideMouseClick, handleKeydown, elToMountTo, portal]);
+  }, [isServer, handleOutsideMouseClick, handleKeydown, portal]);
 
   const Portal = useCallback(
     ({ children }: { children: ReactNode }) => {

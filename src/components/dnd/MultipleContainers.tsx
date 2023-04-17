@@ -36,6 +36,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import useSSR from "use-ssr";
 
 import { coordinateGetter as multipleContainersCoordinateGetter } from "./multipleContainersKeyboardCoordinates";
 import { Container, ContainerProps, TaskItem } from ".";
@@ -117,7 +118,7 @@ const dropAnimation: DropAnimation = {
 export type Item = {
   uid: UniqueIdentifier;
   title: string;
-  subtasks: [];
+  subtasks: Array<any>;
 };
 
 type Items = Record<UniqueIdentifier, Item[]>;
@@ -163,6 +164,8 @@ export function MultipleContainers({
   const lastOverId = useRef<UniqueIdentifier | null>(null);
   const recentlyMovedToNewContainer = useRef(false);
   const isSortingContainer = activeId ? containers.includes(activeId) : false;
+
+  const { isBrowser } = useSSR();
 
   /**
    * Custom collision detection strategy optimized for multiple containers
@@ -268,7 +271,7 @@ export function MultipleContainers({
   }, [items]);
 
   const findItem = (id: UniqueIdentifier) => {
-    let item = null;
+    let item: Item | null = null;
     Object.keys(items).forEach((key) => {
       items[key].forEach((el) => {
         if (el.uid === id) {
@@ -393,7 +396,7 @@ export function MultipleContainers({
 
           unstable_batchedUpdates(() => {
             setContainers((containers) => [...containers, newContainerId]);
-            setItems((items) => ({
+            setItems((items: any) => ({
               ...items,
               [activeContainer]: items[activeContainer].filter(
                 (id) => id.uid !== activeId
@@ -491,23 +494,25 @@ export function MultipleContainers({
           )}
         </SortableContext>
       </div>
-      {createPortal(
-        <DragOverlay adjustScale={adjustScale} dropAnimation={dropAnimation}>
-          {activeId
-            ? containers.includes(activeId)
-              ? renderContainerDragOverlay(activeId)
-              : renderSortableItemDragOverlay(findItem(activeId)) // TODO: refactore this in future
-            : null}
-        </DragOverlay>,
-        document.body
-      )}
+      {isBrowser &&
+        createPortal(
+          <DragOverlay adjustScale={adjustScale} dropAnimation={dropAnimation}>
+            {activeId
+              ? containers.includes(activeId)
+                ? renderContainerDragOverlay(activeId)
+                : renderSortableItemDragOverlay(findItem(activeId)) // TODO: refactore this in future
+              : null}
+          </DragOverlay>,
+          document.body
+        )}
       {trashable && activeId && !containers.includes(activeId) ? (
         <Trash id={TRASH_ID} />
       ) : null}
     </DndContext>
   );
 
-  function renderSortableItemDragOverlay(item: Item) {
+  function renderSortableItemDragOverlay(item: Item | null) {
+    if (!item) return;
     return (
       <TaskItem
         value={item}

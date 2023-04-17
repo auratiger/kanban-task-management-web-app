@@ -7,6 +7,7 @@ import ToggleSidebarButton from "./Button/ToggleSidebarButton";
 import BoardIcon from "./icons/BoardIcon";
 import ThemeToggle from "./Input/ThemeToggle";
 import OpenPortalButton from "./OpenPortalButton";
+
 import { PORTALS } from "@/enums/portals";
 
 const Sidebar = () => {

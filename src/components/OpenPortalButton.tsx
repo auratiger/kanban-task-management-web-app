@@ -1,10 +1,11 @@
 "use client";
 
-import { PORTALS } from "@/enums/portals";
-import usePortal from "@/hooks/usePortal";
 import Button, { Size } from "./Button/Button";
 import AddTaskPortal from "./portal/AddTaskPortal";
 import BoardPortal from "./portal/BoardPortal";
+
+import { PORTALS } from "@/enums/portals";
+import usePortal from "@/hooks/usePortal";
 
 interface OpenPortalWrapperProps {
   unstyled?: boolean;

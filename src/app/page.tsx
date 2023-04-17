@@ -1,10 +1,10 @@
-import { boards } from "sampleData/data";
-
 import { GET_BOARDS } from "graphql/boards";
-import { getClient } from "@/apollo";
+import { boards } from "sampleData/data";
 
 import Board from "@/components/Board";
 import Button from "@/components/Button/Button";
+
+import { getClient } from "@/apollo";
 
 export default async function Home() {
   const board = boards[0];

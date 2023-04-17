@@ -1,9 +1,10 @@
-import { PORTALS } from "@/enums/portals";
 import React from "react";
 
 import LogoIcon from "./icons/Logo";
 import VerticalEllipsis from "./icons/VerticalEllipsis";
 import OpenPortalButton from "./OpenPortalButton";
+
+import { PORTALS } from "@/enums/portals";
 
 const Header = () => {
   return (

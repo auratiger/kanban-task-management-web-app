@@ -1,8 +1,10 @@
 "use client";
 
-import { getClient } from "@/apollo";
-import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "next-themes";
+
+import { ApolloProvider } from "@apollo/client";
+
+import { getClient } from "@/apollo";
 
 export function Providers({ children }) {
   const client = getClient();

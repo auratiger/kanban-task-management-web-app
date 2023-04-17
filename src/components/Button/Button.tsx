@@ -1,5 +1,6 @@
-import classNames from "classnames";
 import React, { AriaAttributes, ButtonHTMLAttributes } from "react";
+
+import classNames from "classnames";
 
 export enum Style {
   PRIMARY,

@@ -1,10 +1,11 @@
 "use client";
 
+import { useForm } from "react-hook-form";
+
 import Button from "../Button/Button";
 import Dropdown from "../Dropdown";
-import Input from "../Input/Input";
-import { useForm } from "react-hook-form";
 import GroupedInput from "../Input/GroupedInput";
+import Input from "../Input/Input";
 
 const dropdownItems = [
   {

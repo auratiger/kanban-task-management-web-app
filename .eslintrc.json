@@ -9,6 +9,11 @@
           "warn",
           { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
         ],
+
+        "@next/next/no-html-link-for-pages": [
+          "error",
+          "packages/my-app/pages/"
+        ],
         "simple-import-sort/imports": [
           "error",
           {

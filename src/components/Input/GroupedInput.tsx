@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { UseFormReturn } from "react-hook-form";
-import Button, { Style } from "../Button/Button";
-import Input, { InputProps } from "./Input";
+
 import { v4 as uuidv4 } from "uuid";
+
+import Button, { Style } from "../Button/Button";
 import CrossIcon from "../icons/CrossIcon";
+
+import Input, { InputProps } from "./Input";
 
 export interface GroupedInputProps {
   form: UseFormReturn;

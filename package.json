@@ -6,7 +6,6 @@
     "name": "Mike van Peeren",
     "url": "https://github.com/MikevPeeren"
   },
-  "license": "MIT",
   "keywords": [
     "tailwindcss",
     "next",
@@ -36,7 +35,8 @@
     "lint": "next lint",
     "format": "prettier --write .",
     "prepare": "husky install",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "fix": "lint -- --fix"
   },
   "lint-staged": {
     "*.{js,ts}": [
