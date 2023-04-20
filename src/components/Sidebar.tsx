@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 
 import classNames from "classnames";
-import { boards } from "sampleData/data";
 
 import ToggleSidebarButton from "./Button/ToggleSidebarButton";
 import BoardIcon from "./icons/BoardIcon";
@@ -9,8 +8,16 @@ import ThemeToggle from "./Input/ThemeToggle";
 import OpenPortalButton from "./OpenPortalButton";
 
 import { PORTALS } from "@/enums/portals";
+import { GET_BOARDS } from "graphql/boards";
+import { getClient } from "@/apollo";
+import Link from "next/link";
 
-const Sidebar = () => {
+export default async function Sidebar() {
+  const client = getClient();
+  const {
+    data: { boards },
+  } = await client.query({ query: GET_BOARDS });
+
   const count: number = boards.length;
 
   return (
@@ -25,7 +32,7 @@ const Sidebar = () => {
                 active={index === 0}
                 renderIcon={() => <BoardIcon />}
               >
-                <button>{board.name}</button>
+                <Link href={`/board/${board.id}`}>{board.name}</Link>
               </BoardItem>
             );
           })}
@@ -48,7 +55,7 @@ const Sidebar = () => {
       </aside>
     </>
   );
-};
+}
 
 interface BoardsItemProps {
   active?: boolean;
@@ -80,5 +87,3 @@ const BoardItem = ({
     </div>
   );
 };
-
-export default Sidebar;

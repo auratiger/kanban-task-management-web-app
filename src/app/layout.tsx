@@ -3,19 +3,18 @@ import React from "react";
 import { Plus_Jakarta_Sans } from "@next/font/google";
 
 import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
-
-import { Providers } from "./providers";
 
 import "../../styles/globals.scss";
+import { Providers } from "./providers";
 
 // If loading a variable font, you don't need to specify the font weight
 const jakarta = Plus_Jakarta_Sans({
   display: "swap",
   variable: "--font-jakarta",
+  subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -28,10 +27,7 @@ export default function RootLayout({
       <body className="bg-grey-light dark:bg-grey-vdark">
         <Providers>
           <Header />
-          <div className="page-height flex">
-            <Sidebar />
-            {children}
-          </div>
+          {children}
         </Providers>
       </body>
     </html>

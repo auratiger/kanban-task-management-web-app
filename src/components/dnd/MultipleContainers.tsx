@@ -46,7 +46,7 @@ import useMountStatus from "@/hooks/useMountStatus";
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
   defaultAnimateLayoutChanges({ ...args, wasDragging: true });
 
-const includedUid = (uid: UniqueIdentifier) => (item: Item) => item.uid === uid;
+const includedId = (id: UniqueIdentifier) => (item: Item) => item.id === id;
 
 function DroppableContainer({
   children,
@@ -79,7 +79,7 @@ function DroppableContainer({
   });
   const isOverContainer = over
     ? (id === over.id && active?.data.current?.type !== "container") ||
-      items.some(includedUid(over.id))
+      items.some(includedId(over.id))
     : false;
 
   return (
@@ -116,12 +116,12 @@ const dropAnimation: DropAnimation = {
 };
 
 export type Item = {
-  uid: UniqueIdentifier;
+  id: UniqueIdentifier;
   title: string;
   subtasks: Array<any>;
 };
 
-type Items = Record<UniqueIdentifier, Item[]>;
+export type Items = Record<UniqueIdentifier, Item[]>;
 
 interface Props {
   adjustScale?: boolean;
@@ -213,7 +213,7 @@ export function MultipleContainers({
               droppableContainers: args.droppableContainers.filter(
                 (container) =>
                   container.id !== overId &&
-                  containerItems.some(includedUid(container.id))
+                  containerItems.some(includedId(container.id))
               ),
             })[0]?.id;
           }
@@ -250,7 +250,7 @@ export function MultipleContainers({
       return id;
     }
 
-    return Object.keys(items).find((key) => items[key].some(includedUid(id)));
+    return Object.keys(items).find((key) => items[key].some(includedId(id)));
   };
 
   const onDragCancel = () => {
@@ -274,7 +274,7 @@ export function MultipleContainers({
     let item: Item | null = null;
     Object.keys(items).forEach((key) => {
       items[key].forEach((el) => {
-        if (el.uid === id) {
+        if (el.id === id) {
           item = el;
           return;
         }
@@ -317,8 +317,8 @@ export function MultipleContainers({
           setItems((items) => {
             const activeItems = items[activeContainer];
             const overItems = items[overContainer];
-            const overIndex = overItems.findIndex(includedUid(overId));
-            const activeIndex = activeItems.findIndex(includedUid(active.id));
+            const overIndex = overItems.findIndex(includedId(overId));
+            const activeIndex = activeItems.findIndex(includedId(active.id));
 
             let newIndex: number;
 
@@ -342,7 +342,7 @@ export function MultipleContainers({
             return {
               ...items,
               [activeContainer]: items[activeContainer].filter(
-                (item) => item.uid !== active.id
+                (item) => item.id !== active.id
               ),
               [overContainer]: [
                 ...items[overContainer].slice(0, newIndex),
@@ -384,7 +384,7 @@ export function MultipleContainers({
           setItems((items) => ({
             ...items,
             [activeContainer]: items[activeContainer].filter(
-              (id) => id.uid !== activeId
+              (id) => id.id !== activeId
             ),
           }));
           setActiveId(null);
@@ -399,11 +399,11 @@ export function MultipleContainers({
             setItems((items: any) => ({
               ...items,
               [activeContainer]: items[activeContainer].filter(
-                (id) => id.uid !== activeId
+                (id) => id.id !== activeId
               ),
               [newContainerId]: [
                 {
-                  ...items[activeContainer].find((el) => el.uid === active.id), // TODO: refactor this in future
+                  ...items[activeContainer].find((el) => el.id === active.id), // TODO: refactor this in future
                 },
               ],
             }));
@@ -416,9 +416,9 @@ export function MultipleContainers({
 
         if (overContainer) {
           const activeIndex = items[activeContainer].findIndex(
-            includedUid(active.id)
+            includedId(active.id)
           );
-          const overIndex = items[overContainer].findIndex(includedUid(overId));
+          const overIndex = items[overContainer].findIndex(includedId(overId));
 
           if (activeIndex !== overIndex) {
             setItems((items) => ({
@@ -453,7 +453,7 @@ export function MultipleContainers({
             <DroppableContainer
               key={containerId}
               id={containerId}
-              label={minimal ? undefined : `Column ${containerId}`}
+              label={minimal ? undefined : `${containerId}`}
               columns={columns}
               items={items[containerId]}
               scrollable={scrollable}
@@ -461,14 +461,14 @@ export function MultipleContainers({
               onRemove={() => handleRemove(containerId)}
             >
               <SortableContext
-                items={items[containerId].map((el) => el.uid)}
+                items={items[containerId].map((el) => el.id)}
                 strategy={strategy}
               >
                 {items[containerId].map((value, index) => {
                   return (
                     <SortableItem
                       disabled={isSortingContainer}
-                      key={value.uid}
+                      key={value.id}
                       item={value}
                       index={index}
                       handle={handle}
@@ -517,7 +517,7 @@ export function MultipleContainers({
       <TaskItem
         value={item}
         handle={handle}
-        color={getColor(item.uid)}
+        color={getColor(item.id)}
         dragOverlay
       />
     );
@@ -526,7 +526,7 @@ export function MultipleContainers({
   function renderContainerDragOverlay(containerId: UniqueIdentifier) {
     return (
       <Container
-        label={`Column ${containerId}`}
+        label={`${containerId}`}
         columns={columns}
         items={items[containerId]}
         style={{
@@ -538,10 +538,10 @@ export function MultipleContainers({
       >
         {items[containerId].map((item) => (
           <TaskItem
-            key={item.uid}
+            key={item.id}
             value={item}
             handle={handle}
-            color={getColor(item.uid)}
+            color={getColor(item.id)}
           />
         ))}
       </Container>
@@ -635,7 +635,7 @@ function SortableItem({ disabled, item, index, handle }: SortableItemProps) {
     transform,
     transition,
   } = useSortable({
-    id: item.uid,
+    id: item.id,
   });
   const mounted = useMountStatus();
   const mountedWhileDragging = isDragging && !mounted;
@@ -649,7 +649,7 @@ function SortableItem({ disabled, item, index, handle }: SortableItemProps) {
       handle={handle}
       handleProps={handle ? { ref: setActivatorNodeRef } : undefined}
       index={index}
-      color={getColor(item.uid)}
+      color={getColor(item.id)}
       transition={transition}
       transform={transform}
       fadeIn={mountedWhileDragging}

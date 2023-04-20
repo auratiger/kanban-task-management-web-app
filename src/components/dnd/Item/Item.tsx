@@ -63,7 +63,7 @@ export const TaskItem = React.memo(
 
       const completeSubstasks = value.subtasks.reduce(
         (acc: number, current) => {
-          if (current.isCompleted) return acc + 1;
+          if (current.isComplete) return acc + 1;
           else return acc;
         },
         0
