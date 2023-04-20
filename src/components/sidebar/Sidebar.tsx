@@ -2,15 +2,15 @@ import React, { ReactNode } from "react";
 
 import classNames from "classnames";
 
-import ToggleSidebarButton from "./Button/ToggleSidebarButton";
-import BoardIcon from "./icons/BoardIcon";
-import ThemeToggle from "./Input/ThemeToggle";
-import OpenPortalButton from "./OpenPortalButton";
+import ToggleSidebarButton from "../Button/ToggleSidebarButton";
+import BoardIcon from "../icons/BoardIcon";
+import ThemeToggle from "../Input/ThemeToggle";
+import OpenPortalButton from "../OpenPortalButton";
 
 import { PORTALS } from "@/enums/portals";
 import { GET_BOARDS } from "graphql/boards";
 import { getClient } from "@/apollo";
-import Link from "next/link";
+import BoardLinks from "./BoardLinks";
 
 export default async function Sidebar() {
   const client = getClient();
@@ -25,17 +25,8 @@ export default async function Sidebar() {
       <aside className="sidebar sidebar-dark place-content-start gap-4 overflow-hidden whitespace-nowrap py-8">
         <span className="px-8 uppercase">{`All boards (${count})`}</span>
         <div className="mb-auto grid gap-2">
-          {boards.map((board, index) => {
-            return (
-              <BoardItem
-                key={index}
-                active={index === 0}
-                renderIcon={() => <BoardIcon />}
-              >
-                <Link href={`/board/${board.id}`}>{board.name}</Link>
-              </BoardItem>
-            );
-          })}
+          <BoardLinks boards={boards} />
+
           <BoardItem secondary renderIcon={() => <BoardIcon />}>
             <OpenPortalButton
               text="+ Create New Board"
@@ -65,7 +56,7 @@ interface BoardsItemProps {
   className?: string;
 }
 
-const BoardItem = ({
+export const BoardItem = ({
   active = false,
   secondary = false,
   renderIcon,

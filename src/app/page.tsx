@@ -1,6 +1,6 @@
 import { getClient } from "@/apollo";
+import HomeRedirect from "@/app/redirect";
 import { GET_BOARDS } from "graphql/boards";
-import { redirect } from "next/navigation";
 
 export default async function Home() {
   const client = getClient();
@@ -8,11 +8,5 @@ export default async function Home() {
     data: { boards },
   } = await client.query({ query: GET_BOARDS });
 
-  const data = client.readQuery({
-    query: GET_BOARDS,
-  });
-
-  console.log("cache23", data);
-
-  redirect(`board/${boards[0].id}`);
+  return <HomeRedirect boards={boards} />;
 }
