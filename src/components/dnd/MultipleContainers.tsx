@@ -584,9 +584,9 @@ function getColor(id: UniqueIdentifier) {
       return "before:bg-purple-300";
     case "D":
       return "before:bg-blue-300";
+    default:
+      return "before:bg-red-300";
   }
-
-  return undefined;
 }
 
 function Trash({ id }: { id: UniqueIdentifier }) {
