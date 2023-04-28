@@ -1,22 +1,53 @@
-import Button, { Style } from "../Button/Button";
+"use client";
+
+import { useForm } from "react-hook-form";
+
+import Button from "../Button/Button";
 import GroupedInput from "../Input/GroupedInput";
 import Input from "../Input/Input";
 
 const BoardPortal = () => {
+  const form = useForm({
+    shouldUseNativeValidation: true,
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = form;
+
+  const onSubmit = (data: any) => {
+    console.log("Submitted form data:", data, isValid);
+  };
+
+  const { ref: nameRef, ...nameControl } = register("name", {
+    required: true,
+    maxLength: 30,
+  });
+
   return (
-    <div className="flex w-[500px] flex-col gap-6">
+    <form
+      className="flex w-[500px] flex-col gap-6"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <span className="text-head-lg">Add New Board</span>
 
-      <Input placeholder="e.g Web Design" label="Name" />
+      <Input
+        innerRef={nameRef}
+        placeholder="e.g Web Design"
+        label="Name"
+        {...nameControl}
+      />
 
       <GroupedInput
-        form={{} as any}
+        form={form}
         label="Columns"
         buttonLabel="+ Add New Column"
       />
 
-      <Button text="Create New Board" expand />
-    </div>
+      <Button type="submit" text="Create New Board" expand />
+    </form>
   );
 };
 
