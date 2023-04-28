@@ -1,16 +1,17 @@
 import {
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  useMemo,
-  ReactNode,
   DOMAttributes,
-  SyntheticEvent,
-  MutableRefObject,
   MouseEvent,
+  MutableRefObject,
+  ReactNode,
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from "react";
 import { createPortal, findDOMNode } from "react-dom";
+
 import useSSR from "use-ssr";
 
 type HTMLElRef = MutableRefObject<HTMLElement>;
@@ -179,7 +180,7 @@ export default function usePortal({
 
     return () => {
       document.removeEventListener("keydown", handleKeydown);
-      elToMountTo.removeChild(node);
+      elToMountTo?.removeChild(node);
     };
   }, [isServer, handleOutsideMouseClick, handleKeydown, elToMountTo, portal]);
 

@@ -10,7 +10,7 @@ export const GET_BOARDS = gql`
 `;
 
 export const GET_BOARD = gql`
-  query Board($id: ID) {
+  query ($id: String) {
     board(where: { id: $id }) {
       id
       name
@@ -20,7 +20,7 @@ export const GET_BOARD = gql`
         tasks {
           id
           title
-          task_status
+          status
           subtasks {
             id
             isComplete

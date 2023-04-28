@@ -1,8 +1,9 @@
-import Button from "@/components/Button/Button";
-
-import { Items, MultipleContainers } from "@/components/dnd/MultipleContainers";
-import { getClient } from "@/apollo";
 import { GET_BOARD } from "graphql/boards";
+
+import Button from "@/components/Button/Button";
+import { Items, MultipleContainers } from "@/components/dnd/MultipleContainers";
+
+import { getClient } from "@/apollo";
 
 function convertColumnsToItems(columns: any): Items {
   const items: any = {};

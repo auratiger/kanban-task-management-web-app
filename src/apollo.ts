@@ -9,10 +9,7 @@ export const getClient = () => {
   if (!client) {
     client = new ApolloClient({
       link: new HttpLink({
-        uri: "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clgjc056m2ijk01uj9kcrg5bq/master",
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
-        },
+        uri: "http://localhost:8001/graphql",
       }),
       cache: new InMemoryCache(),
       defaultOptions: {
