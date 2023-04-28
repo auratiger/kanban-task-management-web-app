@@ -11,13 +11,14 @@ import Input, { InputProps } from "./Input";
 export interface GroupedInputProps {
   form: UseFormReturn;
   label?: string;
+  buttonLabel?: string;
 }
 
 type Items = Pick<InputProps, "placeholder"> & {
   id: string;
 };
 
-const GroupedInput = ({ form, label }: GroupedInputProps) => {
+const GroupedInput = ({ form, label, buttonLabel }: GroupedInputProps) => {
   const { register, unregister } = form;
 
   const [items, setItems] = useState<Array<Items>>([]);
@@ -67,7 +68,7 @@ const GroupedInput = ({ form, label }: GroupedInputProps) => {
       </div>
 
       <Button
-        text="+ Add New Subtask"
+        text={buttonLabel || "Add"}
         onClick={handleOnAddNewItem}
         expand
         btnStyle={Style.SECONDARY}

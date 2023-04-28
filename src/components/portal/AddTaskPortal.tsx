@@ -94,7 +94,11 @@ const AddTaskPortal = () => {
         {...descriptionControl}
       />
 
-      <GroupedInput form={form} label="Subtasks" />
+      <GroupedInput
+        form={form}
+        label="Subtasks"
+        buttonLabel="+ Add New Subtask"
+      />
 
       <Dropdown
         innerRef={statusRef}

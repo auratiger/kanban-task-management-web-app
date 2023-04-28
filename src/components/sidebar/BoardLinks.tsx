@@ -1,10 +1,13 @@
 "use client";
 
-import useLocalStorage, { KEYS } from "@/hooks/useLocalStorage";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+
 import BoardIcon from "../icons/BoardIcon";
+
 import { BoardItem } from "./Sidebar";
+
+import useLocalStorage, { KEYS } from "@/hooks/useLocalStorage";
 
 const BoardLinks = ({ boards }) => {
   const [boardId, setBoardId] = useLocalStorage<string>(KEYS.BOARD);

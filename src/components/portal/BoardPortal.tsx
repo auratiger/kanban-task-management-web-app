@@ -9,8 +9,11 @@ const BoardPortal = () => {
 
       <Input placeholder="e.g Web Design" label="Name" />
 
-      <GroupedInput form={{} as any} label="Columns" />
-      <Button text="+ Add New Column" expand btnStyle={Style.SECONDARY} />
+      <GroupedInput
+        form={{} as any}
+        label="Columns"
+        buttonLabel="+ Add New Column"
+      />
 
       <Button text="Create New Board" expand />
     </div>
