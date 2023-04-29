@@ -67,7 +67,7 @@ const Button = ({
         `${chooseStyle(btnStyle)}`,
         `${chooseSize(size)}`,
         `${className}`,
-        expand && "w-auto"
+        expand && "w-auto flex-1"
       )}
       onClick={onClick}
       {...rest}

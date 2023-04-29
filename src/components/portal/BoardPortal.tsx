@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import GroupedInput from "../Input/GroupedInput";
 import Input from "../Input/Input";
 
-const BoardPortal = () => {
+const BoardPortal = (props: any) => {
   const form = useForm({
     shouldUseNativeValidation: true,
   });

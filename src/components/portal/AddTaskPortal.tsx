@@ -46,7 +46,7 @@ const dropdownItems = [
   },
 ];
 
-const AddTaskPortal = () => {
+const AddTaskPortal = (props: any) => {
   const form = useForm({
     shouldUseNativeValidation: true,
   });

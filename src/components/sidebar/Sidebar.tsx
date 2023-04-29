@@ -1,16 +1,17 @@
 import React, { ReactNode } from "react";
 
 import classNames from "classnames";
+import { GET_BOARDS } from "graphql/boards";
 
 import ToggleSidebarButton from "../Button/ToggleSidebarButton";
 import BoardIcon from "../icons/BoardIcon";
 import ThemeToggle from "../Input/ThemeToggle";
 import OpenPortalButton from "../OpenPortalButton";
 
-import { PORTALS } from "@/enums/portals";
-import { GET_BOARDS } from "graphql/boards";
-import { getClient } from "@/apollo";
 import BoardLinks from "./BoardLinks";
+
+import { getClient } from "@/apollo";
+import { PORTALS } from "@/enums/portals";
 
 export default async function Sidebar() {
   const client = getClient();
