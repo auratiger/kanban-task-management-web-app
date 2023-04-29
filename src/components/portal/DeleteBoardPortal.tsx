@@ -2,7 +2,7 @@
 
 import Button, { Style } from "../Button/Button";
 
-const DeleteBoardPortal = ({ portalContext: { onClose } }) => {
+const DeleteBoardPortal = ({ portalContext: { closePortal } }) => {
   return (
     <div className="flex w-[400px] flex-col gap-8">
       <span className="text-head-lg text-red">Delete this board?</span>
@@ -15,7 +15,7 @@ const DeleteBoardPortal = ({ portalContext: { onClose } }) => {
           text="Cancel"
           btnStyle={Style.SECONDARY}
           expand
-          onClick={onClose}
+          onClick={closePortal}
         />
       </div>
     </div>
