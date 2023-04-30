@@ -10,15 +10,11 @@ import OpenPortalButton from "../OpenPortalButton";
 
 import BoardLinks from "./BoardLinks";
 
-import { getClient } from "@/apollo";
 import { PORTALS } from "@/enums/portals";
+import { grafbase } from "@/grafbase";
 
 export default async function Sidebar() {
-  const client = getClient();
-  const {
-    data: { boards },
-  } = await client.query({ query: GET_BOARDS });
-
+  const { boards }: any = await grafbase.request(GET_BOARDS);
   const count: number = boards.length;
 
   return (

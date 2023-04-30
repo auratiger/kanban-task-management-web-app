@@ -3,7 +3,7 @@ import { GET_BOARD } from "graphql/boards";
 import Button from "@/components/Button/Button";
 import { Items, MultipleContainers } from "@/components/dnd/MultipleContainers";
 
-import { getClient } from "@/apollo";
+import { grafbase } from "@/grafbase";
 
 function convertColumnsToItems(columns: any): Items {
   const items: any = {};
@@ -20,12 +20,8 @@ function convertColumnsToItems(columns: any): Items {
 }
 
 export default async function Home({ params: { slug } }) {
-  const client = getClient();
-  const {
-    data: { board },
-  } = await client.query({
-    query: GET_BOARD,
-    variables: { id: slug },
+  const { board }: any = await grafbase.request(GET_BOARD, {
+    id: slug,
   });
 
   const isBoardEmpty: boolean = board.columns.length <= 0;

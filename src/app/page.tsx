@@ -1,12 +1,10 @@
-import { getClient } from "@/apollo";
-import HomeRedirect from "@/app/redirect";
 import { GET_BOARDS } from "graphql/boards";
 
+import HomeRedirect from "@/app/redirect";
+import { grafbase } from "@/grafbase";
+
 export default async function Home() {
-  const client = getClient();
-  const {
-    data: { boards },
-  } = await client.query({ query: GET_BOARDS });
+  const { boards }: any = await grafbase.request(GET_BOARDS);
 
   return <HomeRedirect boards={boards} />;
 }
