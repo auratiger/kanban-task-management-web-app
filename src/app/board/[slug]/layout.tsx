@@ -9,6 +9,7 @@ export default async function BoardLayout({
 }) {
   return (
     <div className="page-height flex">
+      {/* @ts-expect-error Server Component */}
       <Sidebar />
       {children}
     </div>
