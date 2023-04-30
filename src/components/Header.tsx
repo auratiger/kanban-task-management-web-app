@@ -5,8 +5,11 @@ import VerticalEllipsis from "./icons/VerticalEllipsis";
 import OpenPortalButton from "./OpenPortalButton";
 
 import { PORTALS } from "@/enums/portals";
+import { store } from "@/store";
 
 const Header = () => {
+  const { name } = store.getState().board.currentBoard;
+
   return (
     <>
       <header className="header header-dark">
@@ -14,7 +17,7 @@ const Header = () => {
           <LogoIcon />
         </div>
         <div className="flex flex-1 items-center gap-8 px-8">
-          <span className=" text-head-xl font-bold">Patform Launch</span>
+          <span className=" text-head-xl font-bold">{name}</span>
           <OpenPortalButton text="+Add New Task" portal={PORTALS.ADD_TASK} />
           <VerticalEllipsis />
         </div>

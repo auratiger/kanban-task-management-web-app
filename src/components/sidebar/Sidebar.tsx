@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 
 import classNames from "classnames";
-import { GET_BOARDS } from "graphql/boards";
 
 import ToggleSidebarButton from "../Button/ToggleSidebarButton";
 import BoardIcon from "../icons/BoardIcon";
@@ -11,10 +10,10 @@ import OpenPortalButton from "../OpenPortalButton";
 import BoardLinks from "./BoardLinks";
 
 import { PORTALS } from "@/enums/portals";
-import { grafbase } from "@/grafbase";
+import { store } from "@/store";
 
 export default async function Sidebar() {
-  const { boards }: any = await grafbase.request(GET_BOARDS);
+  const boards = store.getState().board.boards;
   const count: number = boards.length;
 
   return (

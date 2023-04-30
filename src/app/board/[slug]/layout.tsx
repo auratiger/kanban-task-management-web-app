@@ -1,5 +1,6 @@
-import Sidebar from "@/components/sidebar/Sidebar";
 import React from "react";
+
+import Sidebar from "@/components/sidebar/Sidebar";
 
 export default async function BoardLayout({
   children,
