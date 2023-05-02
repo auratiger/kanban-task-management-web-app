@@ -69,7 +69,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
             "column-gradiant dark:column-gradiant-dark border border-lines-light dark:border-lines-dark",
           scrollable && styles.scrollable,
           shadow && styles.shadow,
-          "gap-8 rounded-lg p-2"
+          "scrollbar gap-8 overflow-y-auto rounded-lg p-2"
         )}
         onClick={onClick}
         tabIndex={onClick ? 0 : undefined}

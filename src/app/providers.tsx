@@ -8,7 +8,7 @@ import { store } from "@/store";
 export function Providers({ children }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <Provider store={store}>{children}</Provider>;
+      <Provider store={store}>{children}</Provider>
     </ThemeProvider>
   );
 }
