@@ -2,6 +2,8 @@
 
 import React, { AriaAttributes, useState } from "react";
 
+import NoSsr from "../NoSsr";
+
 interface Props extends AriaAttributes {
   checked?: boolean;
   disabled?: boolean;
@@ -35,23 +37,25 @@ const Toggle = ({
   };
 
   return (
-    <label className="inline-flex h-[1.76rem] cursor-pointer items-center">
-      <input
-        type="checkbox"
-        value=""
-        className="peer sr-only"
-        aria-checked={isChecked}
-        checked={isChecked}
-        onClick={handleOnChange}
-        {...rest}
-        readOnly
-      />
-      <div
-        className={`toggle toggle-dark toggle-ball peer ${
-          disabled ? "bg-red-200" : "bg-purple"
-        }`}
-      ></div>
-    </label>
+    <NoSsr>
+      <label className="inline-flex h-[1.76rem] cursor-pointer items-center">
+        <input
+          type="checkbox"
+          value=""
+          className="peer sr-only"
+          aria-checked={isChecked}
+          checked={isChecked}
+          onClick={handleOnChange}
+          {...rest}
+          readOnly
+        />
+        <div
+          className={`toggle toggle-dark toggle-ball peer ${
+            disabled ? "bg-red-200" : "bg-purple"
+          }`}
+        ></div>
+      </label>
+    </NoSsr>
   );
 };
 

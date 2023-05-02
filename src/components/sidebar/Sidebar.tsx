@@ -1,12 +1,11 @@
-import React, { ReactNode } from "react";
-
-import classNames from "classnames";
+import React from "react";
 
 import ToggleSidebarButton from "../Button/ToggleSidebarButton";
 import BoardIcon from "../icons/BoardIcon";
 import ThemeToggle from "../Input/ThemeToggle";
 import OpenPortalButton from "../OpenPortalButton";
 
+import BoardItem from "./BoardItem";
 import BoardLinks from "./BoardLinks";
 
 import { PORTALS } from "@/enums/portals";
@@ -43,34 +42,3 @@ export default async function Sidebar() {
     </>
   );
 }
-
-interface BoardsItemProps {
-  active?: boolean;
-  secondary?: boolean;
-  renderIcon?: () => ReactNode;
-  children?: any;
-  className?: string;
-}
-
-export const BoardItem = ({
-  active = false,
-  secondary = false,
-  renderIcon,
-  className,
-  children,
-}: BoardsItemProps) => {
-  return (
-    <div
-      className={classNames(
-        "flex w-[80%] items-center gap-2 rounded-r-full fill-[#828FA3] py-2 pl-8",
-        active && "bg-purple fill-white text-white",
-        "hover:bg-purple/10 hover:fill-purple hover:text-purple hover:dark:bg-white",
-        secondary && "fill-purple text-purple",
-        `${className}`
-      )}
-    >
-      {renderIcon?.()}
-      {children}
-    </div>
-  );
-};

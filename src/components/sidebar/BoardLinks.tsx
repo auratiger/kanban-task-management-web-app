@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import BoardIcon from "../icons/BoardIcon";
 
-import { BoardItem } from "./Sidebar";
+import BoardItem from "./BoardItem";
 
 import useLocalStorage, { KEYS } from "@/hooks/useLocalStorage";
 
